@@ -7,6 +7,7 @@
                 </div>
                 <div class="mt-4 flex md:mt-0 md:ml-4">
                     <router-link
+                        v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.Admin.CreateDirectTicketController']"
                         class="btn btn-blue shadow-sm rounded-md mr-4"
                         to="/dashboard/tickets/new"
                     >
@@ -90,7 +91,8 @@
                                                                     >
                                                                 </div>
                                                             </div>
-                                                            <div class="col-span-3 mb-2">
+                                                            <div v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.Admin.FilterController']"
+                                                            class="col-span-3 mb-2">
                                                                 <label class="block text-sm font-medium leading-5 text-gray-700" for="label">
                                                                     {{ $t('Responsable') }}
                                                                 </label>
@@ -114,7 +116,8 @@
                                                                     </template>
                                                                 </input-select>
                                                             </div>
-                                                            <div class="col-span-3 mb-2">
+                                                            <div v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.Admin.FilterController']" 
+                                                            class="col-span-3 mb-2">
                                                                 <label class="block text-sm font-medium leading-5 text-gray-700" for="label">
                                                                     {{ $t('Departamentos') }}
                                                                 </label>
@@ -264,7 +267,8 @@
             <div class="hidden sm:block">
                 <div v-show="selectedRows.length > 0" v-on-clickaway="closeQuickActionDropdown" class="tickets-list-toolbar">
                     <div class="relative inline-block text-left">
-                        <button class="btn hover:bg-gray-100 p-4 border-r border-gray-200 rounded-none" type="button" @click="toggleQuickActionDropdown('agent')">
+                        <button v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.Admin.AsignUserController']"
+                        class="btn hover:bg-gray-100 p-4 border-r border-gray-200 rounded-none" type="button" @click="toggleQuickActionDropdown('agent')">
                             <svg-vue class="h-6 w-6 text-gray-700" icon="font-awesome.user-tag-regular"></svg-vue>
                         </button>
                         <div v-show="quickActions.agent" class="origin-top-right absolute left-0 mt-1 w-56 rounded-md shadow-lg">
@@ -327,7 +331,8 @@
                         </div>
                     </div>
                     <div class="relative inline-block text-left">
-                        <button class="btn hover:bg-gray-100 p-4 border-r border-gray-200 rounded-none" type="button" @click="toggleQuickActionDropdown('priority')">
+                        <button v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.Admin.SetPriorityController']"
+                        class="btn hover:bg-gray-100 p-4 border-r border-gray-200 rounded-none" type="button" @click="toggleQuickActionDropdown('priority')">
                             <svg-vue class="h-6 w-6 text-gray-700" icon="font-awesome.pennant-regular"></svg-vue>
                         </button>
                         <div v-show="quickActions.priority" class="origin-top-right absolute left-0 mt-1 w-56 rounded-md shadow-lg">
@@ -347,7 +352,8 @@
                             </div>
                         </div>
                     </div>
-                    <button class="btn hover:bg-gray-100 p-4 border-r border-gray-200 rounded-none" type="button" @click="toggleQuickActionDropdown('delete')">
+                    <button v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.Admin.DeleteTicketController']" 
+                    class="btn hover:bg-gray-100 p-4 border-r border-gray-200 rounded-none" type="button" @click="toggleQuickActionDropdown('delete')">
                         <svg-vue class="h-6 w-6 text-gray-700" icon="font-awesome.trash-alt-regular"></svg-vue>
                     </button>
                 </div>

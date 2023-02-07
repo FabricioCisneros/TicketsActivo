@@ -10,6 +10,7 @@
                     {{ stats.open_tickets ? stats.open_tickets : 0 }}
                 </dd>
             </div>
+          
         </div>
         <div class="bg-white overflow-hidden shadow rounded-lg">
             <loading :status="stats.pending_tickets == null"/>
@@ -48,6 +49,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
     name: "stats",
     data() {
@@ -71,5 +74,6 @@ export default {
             });
         }
     },
+
 }
 </script>

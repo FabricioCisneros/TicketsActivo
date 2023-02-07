@@ -19,6 +19,8 @@ import App from "@/views/app";
 import i18n from "@/language";
 import router from "@/views/router";
 
+
+
 Vue.use(Vuex);
 Vue.use(Meta);
 Vue.use(SvgVue);
@@ -31,6 +33,7 @@ if (window.app.recaptcha_enabled) {
 }
 
 Vue.config.productionTip = false;
+
 
 new Vue({
     i18n,

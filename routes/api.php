@@ -6,8 +6,12 @@ use App\Http\Controllers\Api\Dashboard\Admin\DepartmentController as DashboardAd
 use App\Http\Controllers\Api\Dashboard\Admin\LabelController as DashboardAdminLabelController;
 use App\Http\Controllers\Api\Dashboard\Admin\LanguageController as DashboardAdminLanguageController;
 use App\Http\Controllers\Api\Dashboard\Admin\PriorityController as DashboardAdminPriorityController;
+use App\Http\Controllers\Api\Dashboard\Admin\SetPriorityController as DashboardAdminSetPriorityController;
+use App\Http\Controllers\Api\Dashboard\Admin\AsignUserController as DashboardAdminAsignUserController;
+use App\Http\Controllers\Api\Dashboard\Admin\DeleteTicketController as DashboardAdminDeleteTicketController;
 use App\Http\Controllers\Api\Dashboard\Admin\SettingController as DashboardAdminSettingController;
 use App\Http\Controllers\Api\Dashboard\Admin\StatusController as DashboardAdminStatusController;
+use App\Http\Controllers\Api\Dashboard\Admin\CreateDirectTicketController as DashboardAdminCreateDirectTicketController;
 use App\Http\Controllers\Api\Dashboard\Admin\UserController as DashboardAdminUserController;
 use App\Http\Controllers\Api\Dashboard\Admin\UserRoleController as DashboardAdminUserRoleController;
 use App\Http\Controllers\Api\Dashboard\CannedReplyController as DashboardCannedReplyController;
@@ -16,6 +20,9 @@ use App\Http\Controllers\Api\Dashboard\TicketController as DashboardTicketContro
 use App\Http\Controllers\Api\File\FileController as FileFileController;
 use App\Http\Controllers\Api\Language\LanguageController as LanguageLanguageController;
 use App\Http\Controllers\Api\Ticket\TicketController as UserTicketController;
+
+use App\Http\Controllers\Api\Dashboard\Admin\FilterController as DashboardAdminFilterController;
+
 
 Route::group(['prefix' => 'lang'], static function () {
     Route::get('/', [LanguageLanguageController::class, 'list'])->name('language.list');
@@ -73,6 +80,12 @@ Route::group(['prefix' => 'dashboard'], static function () {
         Route::apiResource('labels', DashboardAdminLabelController::class);
 
         Route::apiResource('statuses', DashboardAdminStatusController::class)->except(['store', 'delete']);
+
+        Route::apiResource('setPriorities', DashboardAdminSetPriorityController::class);
+        Route::apiResource('AsignUser', DashboardAdminAsignUserController::class);
+        Route::apiResource('Deleteticket', DashboardAdminDeleteTicketController::class);
+        Route::apiResource('FilterTicket', DashboardAdminFilterController::class);
+        Route::apiResource('CreateDirectTicketController',DashboardAdminCreateDirectTicketController::class);
 
         Route::apiResource('priorities', DashboardAdminPriorityController::class)->except(['store', 'delete']);
 

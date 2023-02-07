@@ -56,7 +56,8 @@ class TicketController extends Controller
         $user = Auth::user();
         $sort = json_decode($request->get('sort', json_encode(['order' => 'asc', 'column' => 'created_at'], JSON_THROW_ON_ERROR)), true, 512, JSON_THROW_ON_ERROR);
         if ($user->role_id !== 1) {
-            $items = Ticket::filter($request->all())
+            if($user->role_id===6){
+                $items = Ticket::filter($request->all())
                 ->where(function (Builder $query) use ($user) {
                     $query->where('agent_id', $user->id);
                     $query->orWhere('closed_by', $user->id);
@@ -69,6 +70,16 @@ class TicketController extends Controller
                 })
                 ->orderBy($sort['column'], $sort['order'])
                 ->paginate((int) $request->get('perPage', 10));
+            }else{
+                $items = Ticket::filter($request->all())
+                ->where(function (Builder $query) use ($user) {
+                    $query->where('agent_id', $user->id);
+                    $query->orWhere('closed_by', $user->id);
+                })
+                ->orderBy($sort['column'], $sort['order'])
+                ->paginate((int) $request->get('perPage', 10));
+            }
+            
         } else {
             $items = Ticket::filter($request->all())
                 ->orderBy($sort['column'], $sort['order'])

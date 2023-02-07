@@ -20,13 +20,15 @@ class CheckPermission
      */
     public function handle($request, Closure $next)
     {
-        if (strpos($request->route()->uri, 'api/dashboard') !== false) {
+        if (strpos($request->route()->uri, 'api/dashboard') !== false ) {
             if (!Auth::guard('sanctum')->check()) {
                 return response()->json(['message' => __('Unauthorized')], 401);
             }
             /** @var User $user */
             $user = Auth::guard('sanctum')->user();
             $path = str_replace('\\', '.', explode('@', str_replace($request->route()->action['controller'].'\\', '', $request->route()->action['controller']))[0]);
+
+            
             if (!$user->userRole->checkPermission($path)) {
                 return response()->json(['message' => __('Forbidden')], 403);
             }

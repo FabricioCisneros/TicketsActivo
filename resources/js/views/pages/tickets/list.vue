@@ -90,6 +90,7 @@
                     <template v-if="ticketList.length > 0">
                         <div class="-my-2 sm:-mx-6 lg:-mx-8">
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+
                                 <table class="min-w-full  divide-y divide-gray-200">
                                     <thead>
                                     <tr>
@@ -108,6 +109,8 @@
                                     </tr>
                                     </thead>
                                     <tbody class="bg-white divide-y divide-gray-100">
+
+                                        
                                     <template v-for="ticket in ticketList">
                                         <router-link
                                             :to="'/tickets/' + ticket.uuid"
@@ -136,8 +139,13 @@
                                             </td>
                                         </router-link>
                                     </template>
+
+
                                     </tbody>
                                 </table>
+
+
+
                             </div>
                         </div>
                     </template>

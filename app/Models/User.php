@@ -16,6 +16,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Sanctum\PersonalAccessToken;
+use Spatie\Permission\Traits\HasRoles;
 use Storage;
 
 /**
@@ -64,6 +65,7 @@ use Storage;
 class User extends Authenticatable
 {
     use HasFactory, HasApiTokens, Notifiable, Filterable;
+    use HasRoles;
 
     /**
      * The attributes that should be hidden for arrays.

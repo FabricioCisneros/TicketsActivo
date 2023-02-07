@@ -5,6 +5,7 @@
             <navbar @toggleSidebar="toggleSidebar"></navbar>
             <router-view></router-view>
         </div>
+       
     </div>
 </template>
 
@@ -34,6 +35,7 @@ export default {
                 this.sidebarVisible = !this.sidebarVisible;
             }
         }
-    }
+    },
+
 }
 </script>

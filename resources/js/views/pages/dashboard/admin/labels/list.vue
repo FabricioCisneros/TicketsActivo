@@ -4,7 +4,9 @@
             <div class="md:flex md:items-center md:justify-between">
                 <div class="flex-1 min-w-0">
                     <h1 class="py-0.5 text-2xl font-semibold text-gray-900">{{ $t('Etiquetas') }}</h1>
+                    
                 </div>
+                
                 <div class="mt-4 flex md:mt-0 md:ml-4">
                     <router-link
                         class="btn btn-blue shadow-sm rounded-md"
@@ -93,6 +95,7 @@ export default {
                 self.loading = false;
             });
         }
-    }
+    },
+
 }
 </script>

@@ -122,6 +122,7 @@ class UserRoleController extends Controller
     {
         $permissionsLabels = [];
         $permissionsKeys = [];
+        
         foreach (Route::getRoutes()->getIterator() as $route) {
             if (strpos($route->uri, 'api/dashboard') !== false) {
                 $path = explode('@', str_replace($route->action['controller'].'\\', '', $route->action['controller']))[0];
@@ -134,6 +135,7 @@ class UserRoleController extends Controller
                 $permissionsLabels[$key] = $label;
             }
         }
+        
         return response()->json(['keys' => $permissionsKeys, 'labels' => $permissionsLabels]);
     }
 }
