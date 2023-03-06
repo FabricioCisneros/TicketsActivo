@@ -65,7 +65,8 @@ class UserController extends Controller
         if ($user->save()) {
             return response()->json(['message' => __('Se añadio un nuevo usuario'), 'user' => new UserResource($user)]);
         }
-        return response()->json(['message' => __('Ocurrio un error al añadir al usuario')], 500);
+        return response()->json(['message' => __('Ocurrio un error al añadir al usuario')], 500); 
+       
     }
 
     /**

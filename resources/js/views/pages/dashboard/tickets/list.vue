@@ -7,12 +7,22 @@
                 </div>
                 <div class="mt-4 flex md:mt-0 md:ml-4">
                     <router-link
-                        v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.Admin.CreateDirectTicketController']"
-                        class="btn btn-blue shadow-sm rounded-md mr-4"
-                        to="/dashboard/tickets/new"
-                    >
-                        {{ $t('Crear nuevo ticket') }}
-                    </router-link>
+                    v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.Admin.CreateDirectTicketController']"
+                    class="btn btn-blue shadow-sm rounded-md mr-4 w-40" 
+                    to="/dashboard/tickets/new"
+                >
+                    {{ $t('Crear nuevo ticket') }}
+                </router-link>
+                
+                <router-link
+                    v-if="userId===1"
+                    class="btn btn-blue shadow-sm rounded-md mr-4 w-40 flex" 
+                    to="/dashboard/Reasignations"
+                >
+                    <svg-vue class="self-center mr-2 h-4 w-4" icon="font-awesome.reassingnation"></svg-vue>
+                    <span class="self-center ml-2">{{ $t('Reasignaciones') }}</span>
+                </router-link>
+                    
                     <div class="rounded-md shadow-sm mr-4">
                         <button
                             id="filter-button"
@@ -20,7 +30,7 @@
                             type="button"
                             @click="openFiltersSidebar"
                         >
-                            <svg-vue class="self-center mr-3 h-4 w-4" icon="font-awesome.filter-regular"></svg-vue>
+                        <svg-vue class="self-center mr-2 h-4 w-4" icon="font-awesome.filter-regular"></svg-vue>
                             {{ $t('Filtros') }}
                             <svg-vue class="self-center ml-2.5 -mr-1.5 h-3 w-3" icon="font-awesome.chevron-right-solid"></svg-vue>
                         </button>
@@ -116,20 +126,7 @@
                                                                     </template>
                                                                 </input-select>
                                                             </div>
-                                                            <div v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.Admin.FilterController']" 
-                                                            class="col-span-3 mb-2">
-                                                                <label class="block text-sm font-medium leading-5 text-gray-700" for="label">
-                                                                    {{ $t('Departamentos') }}
-                                                                </label>
-                                                                <input-select
-                                                                    id="department"
-                                                                    v-model="filters.departments"
-                                                                    :options="departmentList"
-                                                                    multiple
-                                                                    option-label="name"
-                                                                    @change="getTickets"
-                                                                />
-                                                            </div>
+                                                            
                                                             <div class="col-span-3 mb-2">
                                                                 <label class="block text-sm font-medium leading-5 text-gray-700" for="label">
                                                                     {{ $t('Etiquetas') }}
@@ -648,6 +645,7 @@ export default {
         return {
             loading: true,
             filtersSidebar: false,
+            userId:'',
             filters: {
                 search: '',
                 user: '',
@@ -686,6 +684,25 @@ export default {
             selectedRows: [],
         }
     },
+    created() {
+    
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      axios.get('/api/auth/user', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((response) => {
+          this.userId = response.data.role_id;
+          //console.log(this.userId);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  },
     computed: {
         anyFilter() {
             return this.filters.search !== ''
@@ -705,6 +722,7 @@ export default {
     mounted() {
         this.getTickets();
         this.getFilters();
+        
     },
     methods: {
         openFiltersSidebar() {
@@ -810,8 +828,10 @@ export default {
                     priorities: self.filters.priorities,
                 }
             }).then(function (response) {
+               // console.log(response.data.items);
                 self.ticketList = response.data.items;
                 self.pagination = response.data.pagination;
+               // console.log(self.ticketList);
                 if (self.pagination.totalPages < self.pagination.currentPage) {
                     self.page = self.pagination.totalPages;
                     self.getTickets();
@@ -821,7 +841,9 @@ export default {
                         self.selectedRows = [];
                     }
                     self.loading = false;
+                    
                 }
+                
             }).catch(function () {
                 self.loading = false;
             });

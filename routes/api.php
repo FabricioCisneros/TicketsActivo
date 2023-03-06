@@ -16,7 +16,14 @@ use App\Http\Controllers\Api\Dashboard\Admin\UserController as DashboardAdminUse
 use App\Http\Controllers\Api\Dashboard\Admin\UserRoleController as DashboardAdminUserRoleController;
 use App\Http\Controllers\Api\Dashboard\CannedReplyController as DashboardCannedReplyController;
 use App\Http\Controllers\Api\Dashboard\StatsController as DashboardStatsController;
+
+
 use App\Http\Controllers\Api\Dashboard\TicketController as DashboardTicketController;
+
+use App\Http\Controllers\Api\Dashboard\RDTicket as DashboardRDTicket;
+use App\Http\Controller\Api\Dashboard\Admin\ReportTicketController as DashboardAdminReportTicketController;
+
+
 use App\Http\Controllers\Api\File\FileController as FileFileController;
 use App\Http\Controllers\Api\Language\LanguageController as LanguageLanguageController;
 use App\Http\Controllers\Api\Ticket\TicketController as UserTicketController;
@@ -37,6 +44,7 @@ Route::group(['prefix' => 'auth'], static function () {
     Route::post('reset', [AuthAuthController::class, 'reset'])->name('auth.reset');
     Route::get('user', [AuthAuthController::class, 'user'])->name('auth.user');
     Route::post('check', [AuthAuthController::class, 'check'])->name('auth.check');
+    
 });
 
 Route::group(['prefix' => 'account'], static function () {
@@ -53,13 +61,18 @@ Route::post('tickets/attachments', [FileFileController::class, 'uploadAttachment
 Route::post('tickets/{ticket}/reply', [UserTicketController::class, 'reply'])->name('tickets.reply');
 Route::apiResource('tickets', UserTicketController::class)->except(['update', 'destroy']);
 
+
+
+Route::post('dashboard/RDtickets', [DashboardRDTicket::class, 'store'])->name('dashboard.RDtickets.store');
+Route::get('dashboard/RDtickets/list',[DashboardRDTicket::class, 'index'])->name('dashboard.RDtickets.index');
+
 Route::group(['prefix' => 'dashboard'], static function () {
 
     Route::group(['prefix' => 'stats'], static function () {
         Route::get('count', [DashboardStatsController::class, 'count'])->name('dashboard.stats-count');
         Route::get('registered-users', [DashboardStatsController::class, 'registeredUsers'])->name('dashboard.stats.registered-users');
         Route::get('opened-tickets', [DashboardStatsController::class, 'openedTickets'])->name('dashboard.stats.opened-tickets');
-    });
+    }  );
 
     Route::get('tickets/filters', [DashboardTicketController::class, 'filters'])->name('dashboard.tickets.filters');
     Route::get('tickets/canned-replies', [DashboardTicketController::class, 'cannedReplies'])->name('dashboard.tickets.canned-replies');
@@ -69,6 +82,13 @@ Route::group(['prefix' => 'dashboard'], static function () {
     Route::post('tickets/{ticket}/quick-actions', [DashboardTicketController::class, 'ticketQuickActions'])->name('dashboard.tickets.ticket-quick-actions');
     Route::post('tickets/{ticket}/reply', [DashboardTicketController::class, 'reply'])->name('dashboard.tickets.reply');
     Route::apiResource('tickets', DashboardTicketController::class)->except(['update']);
+    //Route::post('RDtickets', [DashboardRDTicket::class, 'store'])->name('dashboard.RDticket.store');
+    
+    
+
+
+
+
 
     Route::apiResource('canned-replies', DashboardCannedReplyController::class);
 
@@ -86,6 +106,8 @@ Route::group(['prefix' => 'dashboard'], static function () {
         Route::apiResource('Deleteticket', DashboardAdminDeleteTicketController::class);
         Route::apiResource('FilterTicket', DashboardAdminFilterController::class);
         Route::apiResource('CreateDirectTicketController',DashboardAdminCreateDirectTicketController::class);
+
+        Route::apiResource('ReportTicket', DashboardAdminReportTicketController::class);
 
         Route::apiResource('priorities', DashboardAdminPriorityController::class)->except(['store', 'delete']);
 

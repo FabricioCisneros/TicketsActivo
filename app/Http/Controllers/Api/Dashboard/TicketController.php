@@ -33,6 +33,8 @@ use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\DB;
 use Str;
 use Throwable;
 
@@ -55,8 +57,9 @@ class TicketController extends Controller
         /** @var User $user */
         $user = Auth::user();
         $sort = json_decode($request->get('sort', json_encode(['order' => 'asc', 'column' => 'created_at'], JSON_THROW_ON_ERROR)), true, 512, JSON_THROW_ON_ERROR);
+        
         if ($user->role_id !== 1) {
-            if($user->role_id===6){
+            if($user->role_id!==5){
                 $items = Ticket::filter($request->all())
                 ->where(function (Builder $query) use ($user) {
                     $query->where('agent_id', $user->id);
@@ -85,6 +88,7 @@ class TicketController extends Controller
                 ->orderBy($sort['column'], $sort['order'])
                 ->paginate((int) $request->get('perPage', 10));
         }
+        
         return response()->json([
             'items' => TicketListResource::collection($items->items()),
             'pagination' => [
@@ -204,10 +208,40 @@ class TicketController extends Controller
         return response()->json(['message' => __('An error occurred while deleting data')], 500);
     }
 
-    public function filters(): JsonResponse
+    public function filters(Request $request): JsonResponse
     {
-        $roles = UserRole::where('dashboard_access', true)->pluck('id');
-        $agents = User::whereIn('role_id', $roles)->where('status', true)->get();
+
+        $userId = Auth::id();
+
+        $userRoleId=User::select('role_id')->where('id',$userId)->value('role_id');
+
+        if($userRoleId!=1){
+            $roles = UserRole::where('dashboard_access', true)->pluck('id');
+            // $agents = DB::table('user_departments as d')
+            // ->select('u.*')
+            // ->leftJoin('users as u', 'u.id', '=', 'd.user_id')
+            // ->whereRaw("d.department_id = (SELECT d.department_id FROM users u JOIN user_departments d ON (u.id=d.user_id) AND (d.user_id=3))")
+            // ->get();
+            $agents=User::select('users.*')
+            ->whereIn('role_id', $roles)
+            ->where('status', true)
+            ->leftJoin('user_departments as d', 'users.id', '=', 'd.user_id')
+            ->whereRaw("d.department_id = (SELECT d.department_id FROM users u JOIN user_departments d ON (u.id=d.user_id) AND (d.user_id='$userId'))")
+            ->get();
+        }else{
+            $roles = UserRole::where('dashboard_access', true)->pluck('id');
+            $agents = User::whereIn('role_id', $roles)->where('status', true)->get();
+        }
+        
+        //    $roles = UserRole::where('dashboard_access', true)->pluck('id');
+                    
+        //             $agents=User::select('users.*')
+        //             ->whereIn('role_id', $roles)
+        //             ->where('status', true)
+        //             ->leftJoin('user_departments as d', 'users.id', '=', 'd.user_id')
+        //             ->whereRaw("d.department_id = (SELECT d.department_id FROM users u JOIN user_departments d ON (u.id=d.user_id) AND (d.user_id='$userId'))")
+        //             ->get();
+       
 
         return response()->json([
             'agents' => UserDetailsResource::collection($agents),
@@ -217,6 +251,12 @@ class TicketController extends Controller
             'statuses' => StatusResource::collection(Status::all()),
             'priorities' => PriorityResource::collection(Priority::orderBy('value')->get()),
         ]);
+
+        
+// SELECT 
+// u.name,d.user_id FROM user_departments d LEFT JOIN users u ON (u.id=d.user_id) 
+// WHERE 
+//     d.department_id = (SELECT d.department_id FROM users u JOIN user_departments d ON (u.id=d.user_id) AND (d.user_id=3))
     }
 
     public function cannedReplies(): JsonResponse

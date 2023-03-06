@@ -186,6 +186,7 @@ export default {
         }
     },
     mounted() {
+        
         this.getFilters();
         this.getCannedReplies();
     },

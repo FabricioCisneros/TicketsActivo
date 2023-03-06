@@ -68,7 +68,7 @@ class Ticket extends Model
     protected $casts = [
         'status_id' => 'integer',
         'priority_id' => 'integer',
-        'department_id' => 'integer',
+        'departmen t_id' => 'integer',
         'user_id' => 'integer',
         'agent_id' => 'integer',
         'closed_at' => 'datetime',

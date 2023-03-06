@@ -25,6 +25,12 @@ import DashboardTicketsList from "@/views/pages/dashboard/tickets/list";
 import DashboardTicketsNew from "@/views/pages/dashboard/tickets/new";
 import DashboardTicketsManage from "@/views/pages/dashboard/tickets/manage";
 
+//Importaciones de mi lista
+import DashboardRDList from "@/views/pages/dashboard/Reasignations/list"
+import ReportTicket from "@/views/pages/dashboard/admin/reportes/list"
+import ReportTicketNew from "@/views/pages/dashboard/admin/reportes/new"
+//TERMINA
+
 import AdminDashboardDepartmentsList from "@/views/pages/dashboard/admin/departments/list";
 import AdminDashboardDepartmentsNew from "@/views/pages/dashboard/admin/departments/new";
 import AdminDashboardDepartmentsEdit from "@/views/pages/dashboard/admin/departments/edit";
@@ -66,6 +72,7 @@ import AccountPage from "@/views/pages/account/account";
 import DashboardNotFoundPage from "@/views/pages/dashboard/error/not-found";
 import PageNotFoundPage from "@/views/pages/error/not-found";
 
+
 Vue.use(VueRouter);
 
 let routes = [
@@ -101,7 +108,42 @@ let routes = [
             {path: 'canned-replies', component: DashboardCannedRepliesList, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.CannedReplyController'}},
             {path: 'canned-replies/new', component: DashboardCannedRepliesNew, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.CannedReplyController'}},
             {path: 'canned-replies/:id/edit', component: DashboardCannedRepliesEdit, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.CannedReplyController'}},
+              
+            
+            //COMPONENTES NUEVOS
 
+              { 
+                path: 'Reasignations', 
+                component: DashboardRDList, 
+                meta: {
+                  middleware: 'auth', 
+                  dashboard_access: true, 
+                  controller: 'App.Http.Controllers.Api.Dashboard.RDTicket'
+                }
+              },
+              { 
+                path: 'admin/reportes', 
+                component: ReportTicket, 
+                meta: {
+                  middleware: 'auth', 
+                  dashboard_access: true, 
+                  controller: 'App.Http.Controllers.Api.Dashboard.RDTicket'
+                }
+              },
+              { 
+                path: 'admin/reportes/new', 
+                name: 'dashboard-admin-reportes-nuevo',
+                component: ReportTicketNew, 
+                meta: {
+                  middleware: 'auth', 
+                  dashboard_access: true, 
+                  controller: 'App.Http.Controllers.Api.Dashboard.RDTicket'
+                },
+                props: (route) => ({ UUIDSend: route.params.UUIDSend }),
+              },
+
+
+            //SIGUIENTES COMPONENTES
             {path: 'admin/departments', component: AdminDashboardDepartmentsList, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.Admin.DepartmentController'}},
             {path: 'admin/departments/new', component: AdminDashboardDepartmentsNew, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.Admin.DepartmentController'}},
             {path: 'admin/departments/:id/edit', component: AdminDashboardDepartmentsEdit, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.Admin.DepartmentController'}},

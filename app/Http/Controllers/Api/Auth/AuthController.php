@@ -155,6 +155,12 @@ class AuthController extends Controller
         return response()->json(new UserResource(auth()->user()));
     }
 
+    public function getUserId()
+    {
+        $user = Auth::user();
+        return $user;
+    }
+
     /**
      * @param  Request  $request
      * @return JsonResponse

@@ -25,6 +25,12 @@
         'app_timezone' => Setting::get('app_timezone'),
     ], JSON_THROW_ON_ERROR) !!};
 </script>
+<script>
+    window.Laravel = {!! json_encode([
+        'csrfToken' => csrf_token(),
+        'apiToken' => auth()->user() ? auth()->user()->api_token : null,
+    ]) !!};
+</script>
 <script src="{{ url(mix('js/app.js')) }}"></script>
 </body>
 </html>

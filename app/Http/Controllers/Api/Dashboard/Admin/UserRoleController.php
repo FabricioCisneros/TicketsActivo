@@ -12,6 +12,7 @@ use App\Models\UserRole;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Route;
 use Setting;
 use Str;
@@ -134,8 +135,19 @@ class UserRoleController extends Controller
                 }
                 $permissionsLabels[$key] = $label;
             }
+
+            if (strpos($route->uri, 'dashboard/RDtickets/list') !== false) {
+                $key = 'dashboard.RDTicket.index';
+                $label = 'Listar Tickets';
+                if (!in_array($key, $permissionsKeys, true)) {
+                    $permissionsKeys[] = $key;
+                }
+                $permissionsLabels[$key] = $label;
+            }
+            
         }
         
+    
         return response()->json(['keys' => $permissionsKeys, 'labels' => $permissionsLabels]);
     }
 }
