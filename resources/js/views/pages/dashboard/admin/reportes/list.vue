@@ -3,25 +3,9 @@
         <div class="bg-white border-b border-gray-200 py-6 sm:px-6 lg:px-8 px-5">
             <div class="md:flex md:items-center md:justify-between">
                 <div class="flex-1 min-w-0">
-                    <h1 class="py-0.5 text-2xl font-semibold text-gray-900">{{ $t('Tickets Activos') }}</h1>
+                    <h1 class="py-0.5 text-2xl font-semibold text-gray-900">{{ $t('Tickets con reportes') }}</h1>
                 </div>
                 <div class="mt-4 flex md:mt-0 md:ml-4">
-                    <router-link
-                    v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.Admin.CreateDirectTicketController']"
-                    class="btn btn-blue shadow-sm rounded-md mr-4 w-40" 
-                    to="/dashboard/tickets/new"
-                >
-                    {{ $t('Crear nuevo ticket') }}
-                </router-link>
-                
-                <router-link
-                    v-if="userId===1"
-                    class="btn btn-blue shadow-sm rounded-md mr-4 w-40 flex" 
-                    to="/dashboard/Reasignations"
-                >
-                    <svg-vue class="self-center mr-2 h-4 w-4" icon="font-awesome.reassingnation"></svg-vue>
-                    <span class="self-center ml-2">{{ $t('Reasignaciones') }}</span>
-                </router-link>
                     
                     <div class="rounded-md shadow-sm mr-4">
                         <button
@@ -261,100 +245,6 @@
         </div>
         <loading :status="loading"/>
         <div class="tickets-list">
-            <div class="hidden sm:block">
-                <div v-show="selectedRows.length > 0" v-on-clickaway="closeQuickActionDropdown" class="tickets-list-toolbar">
-                    <div class="relative inline-block text-left">
-                        <button v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.Admin.AsignUserController']"
-                        class="btn hover:bg-gray-100 p-4 border-r border-gray-200 rounded-none" type="button" @click="toggleQuickActionDropdown('agent')">
-                            <svg-vue class="h-6 w-6 text-gray-700" icon="font-awesome.user-tag-regular"></svg-vue>
-                        </button>
-                        <div v-show="quickActions.agent" class="origin-top-right absolute left-0 mt-1 w-56 rounded-md shadow-lg">
-                            <div class="rounded-md bg-white shadow-xs">
-                                <div class="py-1">
-                                    <template v-for="agent in agentList">
-                                        <a
-                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                            href="#"
-                                            role="menuitem"
-                                            @click.prevent="quickAction('agent', agent.id)"
-                                        >
-                                            {{ agent.name }}
-                                        </a>
-                                    </template>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="relative inline-block text-left">
-                        <button class="btn hover:bg-gray-100 p-4 border-r border-gray-200 rounded-none" type="button" @click="toggleQuickActionDropdown('department')">
-                            <svg-vue class="h-6 w-6 text-gray-700" icon="font-awesome.users-class-regular"></svg-vue>
-                        </button>
-                        <div v-show="quickActions.department" class="origin-top-right absolute left-0 mt-1 w-56 rounded-md shadow-lg">
-                            <div class="rounded-md bg-white shadow-xs">
-                                <div class="py-1">
-                                    <template v-for="department in departmentList">
-                                        <a
-                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                            href="#"
-                                            role="menuitem"
-                                            @click.prevent="quickAction('department', department.id)"
-                                        >
-                                            {{ department.name }}
-                                        </a>
-                                    </template>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="relative inline-block text-left">
-                        <button class="btn hover:bg-gray-100 p-4 border-r border-gray-200 rounded-none" type="button" @click="toggleQuickActionDropdown('label')">
-                            <svg-vue class="h-6 w-6 text-gray-700" icon="font-awesome.tags-regular"></svg-vue>
-                        </button>
-                        <div v-show="quickActions.label" class="origin-top-right absolute left-0 mt-1 w-56 rounded-md shadow-lg">
-                            <div class="rounded-md bg-white shadow-xs">
-                                <div class="py-1">
-                                    <template v-for="label in labelList">
-                                        <a
-                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                            href="#"
-                                            role="menuitem"
-                                            @click.prevent="quickAction('label', label.id)"
-                                        >
-                                            {{ label.name }}
-                                        </a>
-                                    </template>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="relative inline-block text-left">
-                        <button v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.Admin.SetPriorityController']"
-                        class="btn hover:bg-gray-100 p-4 border-r border-gray-200 rounded-none" type="button" @click="toggleQuickActionDropdown('priority')">
-                            <svg-vue class="h-6 w-6 text-gray-700" icon="font-awesome.pennant-regular"></svg-vue>
-                        </button>
-                        <div v-show="quickActions.priority" class="origin-top-right absolute left-0 mt-1 w-56 rounded-md shadow-lg">
-                            <div class="rounded-md bg-white shadow-xs">
-                                <div class="py-1">
-                                    <template v-for="priority in priorityList">
-                                        <a
-                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                            href="#"
-                                            role="menuitem"
-                                            @click.prevent="quickAction('priority', priority.id)"
-                                        >
-                                            {{ priority.name }}
-                                        </a>
-                                    </template>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <button v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.Admin.DeleteTicketController']" 
-                    class="btn hover:bg-gray-100 p-4 border-r border-gray-200 rounded-none" type="button" @click="toggleQuickActionDropdown('delete')">
-                        <svg-vue class="h-6 w-6 text-gray-700" icon="font-awesome.trash-alt-regular"></svg-vue>
-                    </button>
-                </div>
-            </div>
             <template v-if="ticketList.length > 0">
                 <div class="sm:hidden">
                     <ul class="border-b border-gray-200 divide-y divide-gray-200">
@@ -395,27 +285,20 @@
                 </div>
                 <div class="hidden sm:block">
                     <div class="align-middle inline-block min-w-full border-b border-gray-200">
-                        <table class="min-w-full divide-y divide-gray-200">
+                        <!-- <table class="min-w-full divide-y divide-gray-200">
                             <thead>
                             <tr>
-                                <th class="px-3 pt-2 pb-3">
-                                    <input
-                                        id="select-all-tickets"
-                                        v-model="selectAll"
-                                        aria-label="Checkbox"
-                                        class="form-checkbox cursor-pointer h-4 w-4 text-blue-600 transition duration-150 ease-in-out"
-                                        type="checkbox"
-                                        @change="selectAllTickets"
-                                    >
+                                <th class="hidden lg:table-cell px-3 py-2 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">
+                                    {{ $t('Usuario que reporto') }}
                                 </th>
                                 <th class="hidden lg:table-cell px-3 py-2 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">
-                                    {{ $t('Usuario') }}
+                                    {{ $t('Usuario que levanto el ticket') }}
                                 </th>
-                                <th class="px-3 py-2 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider whitespace-no-wrap overflow-x-auto" colspan="2">
+                                <th class="px-3 py-2 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider whitespace-no-wrap overflow-x-auto" >
                                     {{ $t('Informacion del ticket') }}
                                 </th>
                                 <th class="px-3 py-2 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider whitespace-no-wrap overflow-x-auto">
-                                    {{ $t('Responsable') }}
+                                    {{ $t('titulo del reporte') }}
                                 </th>
                                 <th class="px-3 py-2 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider whitespace-no-wrap overflow-x-auto">
                                     {{ $t('Ultima Actualizacion') }}
@@ -429,18 +312,25 @@
                                     class="cursor-pointer hover:bg-gray-100"
                                     tag="tr"
                                 >
-                                    <td class="px-3 py-4 whitespace-no-wrap text-center text-sm leading-5 font-medium">
-                                        <input
-                                            :id="'ticket-' + ticket.id"
-                                            v-model="selectedRows"
-                                            :value="ticket.id"
-                                            aria-label="Checkbox"
-                                            class="form-checkbox cursor-pointer h-4 w-4 text-blue-600 transition duration-150 ease-in-out"
-                                            type="checkbox"
-                                            @change="selectTicket"
-                                            @click.stop
-                                        >
-                                    </td>
+                                <td class="hidden lg:table-cell px-3 py-4 whitespace-no-wrap leading-5">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-10 w-10">
+                                            <img
+                                                :alt="$t('Avatar')"
+                                                :src="ticket.user.avatar !== 'gravatar' ? ticket.user.avatar : ticket.user.gravatar"
+                                                class="h-10 w-10 rounded-full"
+                                            >
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm leading-5 font-medium text-gray-900">
+                                                {{ ticket.user.name }}
+                                            </div>
+                                            <div class="text-sm leading-5 text-gray-500">
+                                                {{ ticket.user.email }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
                                     <td class="hidden lg:table-cell px-3 py-4 whitespace-no-wrap leading-5">
                                         <div class="flex items-center">
                                             <div class="flex-shrink-0 h-10 w-10">
@@ -460,8 +350,26 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="px-3 py-4 max-w-0 w-full whitespace-no-wrap">
-                                        <div class="flex text-sm leading-5 text-gray-900">
+                                    <td class="hidden lg:table-cell px-3 py-4 whitespace-no-wrap leading-5">
+                                        <div class="flex items-center">
+                                            <template v-for="label in ticket.labels">
+                                                <div
+                                                    :style="{backgroundColor: label.color}"
+                                                    class="hidden lg:inline-flex items-center px-2 py-0.5 mr-1 rounded text-xs font-medium leading-4 text-gray-100"
+                                                >
+                                                    {{ label.name }}
+                                                </div>
+                                            </template>
+                                            <div class="w-full truncate">
+                                                {{ ticket.subject }}
+                                            </div>
+                                        </div>
+                                        <div class="text-sm leading-5 text-gray-500 w-full truncate">
+                                            {{ ticket.lastReply ? ticket.lastReply.body : null }}
+                                        </div>
+                                    </td>
+                                    <td class="hidden lg:table-cell px-3 py-4 whitespace-no-wrap leading-5">
+                                        <div class="flex items-center">
                                             <template v-for="label in ticket.labels">
                                                 <div
                                                     :style="{backgroundColor: label.color}"
@@ -479,19 +387,6 @@
                                         </div>
                                     </td>
                                     <td class="px-3 py-4 whitespace-no-wrap leading-5">
-                                        <div class="text-sm leading-5 font-medium text-gray-900">
-                                            {{ ticket.status ? ticket.status.name : $t('Sin asignar') }}
-                                        </div>
-                                        <div class="text-sm leading-5 text-gray-500">
-                                            {{ ticket.priority ? ticket.priority.name : $t('Sin asignar') }}
-                                        </div>
-                                    </td>
-                                    <td class="px-3 py-4 whitespace-no-wrap leading-5">
-                                        <div class="text-sm leading-5 text-gray-900">
-                                            {{ ticket.agent ? ticket.agent.name : $t('Sin asignar') }}
-                                        </div>
-                                    </td>
-                                    <td class="px-3 py-4 whitespace-no-wrap leading-5">
                                         <div class="text-sm text-gray-500">
                                             {{ ticket.updated_at | momentFormatDateTimeAgo }}
                                         </div>
@@ -499,7 +394,7 @@
                                 </router-link>
                             </template>
                             </tbody>
-                        </table>
+                        </table> -->
                     </div>
                 </div>
             </template>
@@ -556,77 +451,6 @@
                 </button>
             </div>
         </nav>
-        <div v-show="quickActions.delete" class="fixed z-20 inset-0 overflow-y-auto">
-            <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-                <transition
-                    duration="300"
-                    enter-active-class="ease-out duration-300"
-                    enter-class="opacity-0"
-                    enter-to-class="opacity-100"
-                    leave-active-class="ease-in duration-200"
-                    leave-class="opacity-100"
-                    leave-to-class="opacity-0"
-                >
-                    <div v-show="quickActions.delete" class="fixed inset-0 transition-opacity">
-                        <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
-                    </div>
-                </transition>
-                <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>&#8203;
-                <transition
-                    enter-active-class="ease-out duration-300"
-                    enter-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                    enter-to-class="opacity-100 translate-y-0 sm:scale-100"
-                    leave-active-class="ease-in duration-200"
-                    leave-class="opacity-100 translate-y-0 sm:scale-100"
-                    leave-to-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                >
-                    <div
-                        v-show="quickActions.delete"
-                        aria-labelledby="modal-headline"
-                        aria-modal="true"
-                        class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
-                        role="dialog"
-                    >
-                        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                            <div class="sm:flex sm:items-start">
-                                <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                                    <svg-vue class="h-6 w-6 pb-1 text-red-600" icon="font-awesome.exclamation-triangle-light"></svg-vue>
-                                </div>
-                                <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                                    <h3 id="modal-headline" class="text-lg leading-6 font-medium text-gray-900">
-                                        {{ $t('Delete tickets') }}
-                                    </h3>
-                                    <div class="mt-2">
-                                        <p class="text-sm leading-5 text-gray-500">
-                                            {{ $t('Estas seguro de eliminar los tickets seleccionados') }}
-                                            {{ $t('Todos los datos seran eliminiados permanentemente') }}.
-                                            {{ $t('Toda informacion relacionada sera eliminada') }}.
-                                            {{ $t('Esta accion no podra reveertise') }}.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-gray-100 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                            <button
-                                class="btn btn-red mr-2 sm:mr-0"
-                                type="button"
-                                @click="quickAction('delete')"
-                            >
-                                {{ $t('Borrar los tickets') }}
-                            </button>
-                            <button
-                                class="btn btn-white mr-0 sm:mr-2"
-                                type="button"
-                                @click="quickActions.delete = false"
-                            >
-                                {{ $t('Cancelar') }}
-                            </button>
-                        </div>
-                    </div>
-                </transition>
-            </div>
-        </div>
     </div>
 </template>
 
@@ -646,21 +470,23 @@ export default {
             loading: true,
             filtersSidebar: false,
             userId:'',
+            // filters: {
+            //     search: '',
+            //     user: '',
+            //     agents: [],
+            //     departments: [],
+            //     labels: [],
+            //     statuses: [1, 2],
+            //     priorities: [],
+            // },
             filters: {
                 search: '',
                 user: '',
+                userReport:'',
                 agents: [],
                 departments: [],
-                labels: [],
-                statuses: [1, 2],
-                priorities: [],
-            },
-            quickActions: {
-                agent: false,
-                department: false,
-                label: false,
-                priority: false,
-                delete: false,
+                ticket:'',
+
             },
             sort: {
                 order: 'desc',
@@ -680,8 +506,6 @@ export default {
             statusList: [],
             priorityList: [],
             ticketList: [],
-            selectAll: false,
-            selectedRows: [],
         }
     },
     created() {
@@ -708,10 +532,7 @@ export default {
             return this.filters.search !== ''
                 || this.filters.user !== ''
                 || this.filters.agents !== 0
-                || this.filters.departments.length !== 0
-                || this.filters.labels.length !== 0
-                || this.filters.statuses.length !== 0
-                || this.filters.priorities.length !== 0;
+                || this.filters.departments.length !== 0;
         }
     },
     filters: {
@@ -721,7 +542,7 @@ export default {
     },
     mounted() {
         this.getTickets();
-        this.getFilters();
+        // this.getFilters();
         
     },
     methods: {
@@ -735,50 +556,6 @@ export default {
         },
         closeFiltersSidebar() {
             this.filtersSidebar = false;
-        },
-        closeQuickActionDropdown() {
-            this.quickActions.agent = false;
-            this.quickActions.department = false;
-            this.quickActions.label = false;
-            this.quickActions.priority = false;
-            this.quickActions.delete = false;
-        },
-        toggleQuickActionDropdown(quickAction) {
-            if (quickAction === 'agent') {
-                this.quickActions.agent = !this.quickActions.agent;
-                this.quickActions.department = false;
-                this.quickActions.label = false;
-                this.quickActions.priority = false;
-                this.quickActions.delete = false;
-            }
-            if (quickAction === 'department') {
-                this.quickActions.department = !this.quickActions.department;
-                this.quickActions.agent = false;
-                this.quickActions.label = false;
-                this.quickActions.priority = false;
-                this.quickActions.delete = false;
-            }
-            if (quickAction === 'label') {
-                this.quickActions.label = !this.quickActions.label;
-                this.quickActions.agent = false;
-                this.quickActions.department = false;
-                this.quickActions.priority = false;
-                this.quickActions.delete = false;
-            }
-            if (quickAction === 'priority') {
-                this.quickActions.priority = !this.quickActions.priority;
-                this.quickActions.agent = false;
-                this.quickActions.department = false;
-                this.quickActions.label = false;
-                this.quickActions.delete = false;
-            }
-            if (quickAction === 'delete') {
-                this.quickActions.delete = !this.quickActions.delete;
-                this.quickActions.agent = false;
-                this.quickActions.department = false;
-                this.quickActions.label = false;
-                this.quickActions.priority = false;
-            }
         },
         changePage(page) {
             const self = this;
@@ -796,53 +573,70 @@ export default {
             }
             self.getTickets();
         },
-        selectTicket() {
-            this.closeQuickActionDropdown();
-            this.selectAll = Object.keys(this.selectedRows).length === Object.keys(this.ticketList).length;
-        },
-        selectAllTickets() {
-            this.selectedRows = [];
-            this.closeQuickActionDropdown();
-            if (this.selectAll) {
-                for (let ticket in this.ticketList) {
-                    this.selectedRows.push(this.ticketList[ticket].id);
-                }
-            }
-        },
+        // getTickets() {
+        //     const self = this;
+        //     self.loading = true;
+        //     axios.get('api/dashboard/tickets', {
+        //         params: {
+        //             page: self.page,
+        //             sort: self.sort,
+        //             perPage: self.perPage,
+        //             search: self.filters.search,
+        //             user: self.filters.user,
+        //             agents: self.filters.agents,
+        //             departments: self.filters.departments,
+        //             labels: self.filters.labels,
+        //             statuses: self.filters.statuses,
+        //             priorities: self.filters.priorities,
+        //         }
+        //     }).then(function (response) {
+        //         console.log(response.data.items);
+        //         self.ticketList = response.data.items;
+        //         self.pagination = response.data.pagination;
+        //         console.log(self.ticketList);
+        //         if (self.pagination.totalPages < self.pagination.currentPage) {
+        //             self.page = self.pagination.totalPages;
+        //             self.getTickets();
+        //         } else {
+        //             if (self.ticketList.length === 0) {
+        //                 self.selectAll = false;
+        //                 self.selectedRows = [];
+        //             }
+        //             self.loading = false;
+                    
+        //         }
+                
+        //     }).catch(function () {
+        //         self.loading = false;
+        //     });
+        // },
         getTickets() {
             const self = this;
-            self.selectAll = false;
-            self.selectedRows = [];
             self.loading = true;
-            axios.get('api/dashboard/tickets', {
-                params: {
-                    page: self.page,
-                    sort: self.sort,
-                    perPage: self.perPage,
-                    search: self.filters.search,
-                    user: self.filters.user,
-                    agents: self.filters.agents,
-                    departments: self.filters.departments,
-                    labels: self.filters.labels,
-                    statuses: self.filters.statuses,
-                    priorities: self.filters.priorities,
-                }
+            axios.get('api/dashboard/admin/ReportTicket', {
+                 params: {
+                     page: self.page,
+                     sort: self.sort,
+                     perPage: self.perPage,
+                     search: self.filters.search,
+                     userReported: self.filters.user,
+                     agents: self.filters.agents,
+                     departments: self.filters.departments,
+                     tickets:self.filters.tickets
+                 }
             }).then(function (response) {
-                console.log(response.data.items);
+                 console.log(response.data.items);
                 self.ticketList = response.data.items;
-                self.pagination = response.data.pagination;
                 console.log(self.ticketList);
-                if (self.pagination.totalPages < self.pagination.currentPage) {
-                    self.page = self.pagination.totalPages;
-                    self.getTickets();
-                } else {
-                    if (self.ticketList.length === 0) {
-                        self.selectAll = false;
-                        self.selectedRows = [];
-                    }
-                    self.loading = false;
+                // self.pagination = response.data.pagination;
+                // console.log(self.ticketList);
+                // if (self.pagination.totalPages < self.pagination.currentPage) {
+                //     self.page = self.pagination.totalPages;
+                //     self.getTickets();
+                // } else {
+                //     self.loading = false;
                     
-                }
+                // }
                 
             }).catch(function () {
                 self.loading = false;
@@ -853,26 +647,6 @@ export default {
             axios.get('api/dashboard/tickets/filters').then(function (response) {
                 self.agentList = response.data.agents;
                 self.departmentList = response.data.departments;
-                self.labelList = response.data.labels;
-                self.statusList = response.data.statuses;
-                self.priorityList = response.data.priorities;
-            });
-        },
-        quickAction(param, value) {
-            const self = this;
-            axios.post('api/dashboard/tickets/quick-actions', {
-                action: param,
-                value: value,
-                tickets: self.selectedRows,
-            }).then(function (response) {
-                self.$notify({
-                    title: self.$i18n.t('Success').toString(),
-                    text: response.data.message,
-                    type: 'success'
-                });
-                self.getTickets();
-            }).catch(function () {
-                self.closeQuickActionDropdown();
             });
         },
     }

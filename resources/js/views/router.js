@@ -29,6 +29,11 @@ import DashboardTicketsManage from "@/views/pages/dashboard/tickets/manage";
 import DashboardRDList from "@/views/pages/dashboard/Reasignations/list"
 import ReportTicket from "@/views/pages/dashboard/admin/reportes/list"
 import ReportTicketNew from "@/views/pages/dashboard/admin/reportes/new"
+
+
+
+import ReportTicketListPage from "@/views/pages/dashboard/admin/reportes/list";
+import ReportTicketNewPage from "@/views/pages/dashboard/admin/reportes/new";
 //TERMINA
 
 import AdminDashboardDepartmentsList from "@/views/pages/dashboard/admin/departments/list";
@@ -111,7 +116,7 @@ let routes = [
               
             
             //COMPONENTES NUEVOS
-
+              
               { 
                 path: 'Reasignations', 
                 component: DashboardRDList, 

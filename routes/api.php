@@ -21,8 +21,9 @@ use App\Http\Controllers\Api\Dashboard\StatsController as DashboardStatsControll
 use App\Http\Controllers\Api\Dashboard\TicketController as DashboardTicketController;
 
 use App\Http\Controllers\Api\Dashboard\RDTicket as DashboardRDTicket;
-use App\Http\Controller\Api\Dashboard\Admin\ReportTicketController as DashboardAdminReportTicketController;
+// use App\Http\Controller\Api\Dashboard\Admin\ReportTicketController as DashboardAdminReportTicketController;
 
+use App\Http\Controllers\Api\Dashboard\Admin\ReportTicketController as DashboardAdminReportTicketController;
 
 use App\Http\Controllers\Api\File\FileController as FileFileController;
 use App\Http\Controllers\Api\Language\LanguageController as LanguageLanguageController;

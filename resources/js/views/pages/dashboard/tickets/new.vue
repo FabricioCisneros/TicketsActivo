@@ -216,7 +216,7 @@ export default {
             axios.post('api/dashboard/tickets', self.ticket).then(function (response) {
                 self.$notify({
                     title: self.$i18n.t('Success').toString(),
-                    text: self.$i18n.t('Data saved correctly').toString(),
+                    text: self.$i18n.t('Data saved correctly'),
                     type: 'success'
                 });
                 self.$router.push('/dashboard/tickets/' + response.data.ticket.uuid + '/manage');

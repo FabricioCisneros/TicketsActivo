@@ -45,12 +45,12 @@
                                         </span>
                                     </div>
                                 </div>
-                                <!-- <div class="col-span-3">
+                                <div class="col-span-3">
                                     <label class="block text-sm font-medium leading-5 text-gray-700" for="subject">{{ $t('asunto') }}</label>
                                     <div class="mt-1 relative rounded-md shadow-sm">
                                         <input
                                             id="subject"
-                                            v-model="ticket.subject"
+                                            v-model="report.tituloReporte"
                                             :placeholder="$t('titulo del reporte')"
                                             class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                                             required
@@ -62,7 +62,7 @@
                                     <div class="mt-1 relative rounded-md shadow-sm">
                                         <input-wysiwyg
                                             id="ticket_body"
-                                            v-model="ticket.body"
+                                            v-model="report.razonReporte"
                                             :cannedReplyList="cannedReplyList"
                                             :plugins="{images: true, cannedReply: true, attachment: true, shortCode: true}"
                                             @selectUploadFile="selectUploadFile"
@@ -75,13 +75,13 @@
                                         </input-wysiwyg>
                                     </div>
                                 </div>
-                                <div v-if="ticket.attachments.length > 0" class="col-span-3">
+                                <div v-if="report.attachments.length > 0" class="col-span-3">
                                     <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2">
-                                        <template v-for="(attachment, index) in ticket.attachments">
+                                        <template v-for="(attachment, index) in report.attachments">
                                             <attachment :details="attachment" v-on:remove="removeAttachment(index)"/>
                                         </template>
                                     </div>
-                                </div> -->
+                                </div> 
                             </div>
                         </div>
                     </div>
@@ -146,7 +146,8 @@ export default {
                 ticket_id:null,
                 userReport_id:null,
                 tituloReporte:'',
-                cuerpoReporte:''
+                razonReporte:'',
+                attachments: [],
             }
         }
     },
@@ -207,29 +208,28 @@ export default {
                 self.cannedReplyList = response.data;
             })
         },
-        // saveTicket() {
-        //     const self = this;
-        //     self.loading.form = true;
-        //     axios.post('api/dashboard/tickets', self.ticket).then(function (response) {
-        //         self.$notify({
-        //             title: self.$i18n.t('Completado').toString(),
-        //             text: self.$i18n.t('Datos guardados correctamente').toString(),
-        //             type: 'success'
-        //         });
-        //         self.$router.push('/dashboard/tickets/' + response.data.ticket.uuid + '/manage');
-        //     }).catch(function () {
-        //         self.loading.form = false;
-        //     });
-        // },
-        saveTicket() {
-            const self = this;
-            // self.loading.form = true;
-            self.report.agent_id=self.ticketDetail.agent_id;
-            // self.report.user_id=ticketDetail.user_id;
-            // self.report.department_id=ticketDetail.department_id;
-            // self.report.ticket_id=ticketDetail.id;
 
-            console.log(self.report);
+        saveTicket() {
+            const self=this;
+            self.loading.form = true;
+
+            self.report.agent_id=self.ticketDetail.agent_id;
+            self.report.user_id=self.ticketDetail.user_id;
+            self.report.department_id=self.ticketDetail.department_id;
+            self.report.ticket_id=self.ticketDetail.id;
+
+            axios.post('api/dashboard/admin/ReportTicket', self.report).then(function(response){
+                self.$notify({
+                    title: self.$i18n.t('Success').toString(),
+                    text: self.$i18n.t('Data saved correctly').toString(),
+                    type:'success'
+                });
+                self.$router.push('/dashboard/tickets/');
+            }).catch(function(){
+                self.loading.form =false;
+            });
+               
+            console.log("console::: ",self.report);
         },
         selectUploadFile() {
             if (!this.loading.file) {
