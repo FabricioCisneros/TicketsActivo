@@ -625,7 +625,7 @@ export default {
                      tickets:self.filters.tickets
                  }
             }).then(function (response) {
-                 console.log(response.data.items);
+                 //console.log(response.data.items);
                 self.ticketList = response.data.items;
                 console.log(self.ticketList);
                 // self.pagination = response.data.pagination;

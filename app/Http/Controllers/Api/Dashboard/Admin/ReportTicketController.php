@@ -21,7 +21,7 @@ class ReportTicketController extends Controller
 
         $Report->user_id=$request->input('user_id');
         $Report->agent_id=$request->input('agent_id');
-        $Report->userReport_id=$request->input('userReport_id');
+        $Report->reportedBy_id=$request->input('reportedBy_id');
         $Report->ticket_id=$request->input('ticket_id');
         $Report->department_id=$request->input('department_id');
         $Report->tituloReporte=$request->input('tituloReporte');
@@ -42,7 +42,6 @@ class ReportTicketController extends Controller
         ->orderBy($sort['column'], $sort['order'])
         ->paginate((int) $request->get('perPage', 10));
         
-        
         return response()->json([
             'items' => ReporteTicketListResource::collection($items->items()),
             'pagination' => [
@@ -52,6 +51,5 @@ class ReportTicketController extends Controller
                 'totalPages' => $items->lastPage()
             ]
         ]);
-
     }
 }

@@ -15,20 +15,21 @@ class CreateReporteTicketTable extends Migration
     {
         Schema::create('reporteTicket', function (Blueprint $table) {
             $table->id();
-            $table->text('razon_reporte');
+            $table->text('razonReporte');
+            $table->text('tituloReporte');
             $table->dateTime('fecha_reporte');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('agent_id')->nullable();
             $table->unsignedBigInteger('department_id');
             $table->unsignedBigInteger('ticket_id');
-            $table->unsignedBigInteger('userReport_id');
+            $table->unsignedBigInteger('reportedBy_id');
             $table->timestamps();
         
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('agent_id')->references('id')->on('users');
             $table->foreign('department_id')->references('id')->on('departments');
             $table->foreign('ticket_id')->references('id')->on('tickets');
-            $table->foreign('userReport_id')->references('id')->on('users');
+            $table->foreign('reportedBy_id')->references('id')->on('users');
         });
     }
 

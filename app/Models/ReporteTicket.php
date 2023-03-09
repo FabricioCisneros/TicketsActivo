@@ -18,7 +18,7 @@ class ReporteTicket extends Model
         'agent_id'=>'integer',
         'department_id'=>'integer',
         'ticket_id'=>'integer',
-        'userReport_id'=>'integer',
+        'reportedBy_id'=>'integer',
         'TituloReporte'=>'integer',
         'razon_reporte'=>'integer'
     ];
@@ -31,7 +31,9 @@ class ReporteTicket extends Model
     public function agent():BelongsTo{
         return $this->belongsTo(User::class);
     }
-
+    public function reportedBy():BelongsTo{
+        return $this->belongsTo(User::class, 'reportedBy_id');
+    }
     public function department():BelongsTo{
         return $this->belongsTo(Department::class);
     }
@@ -40,8 +42,6 @@ class ReporteTicket extends Model
         return $this->belongsTo(Ticket::class);
     }
 
-    public function userReport():BelongsTo{
-        return $this->belongsTo(User::class);
-    }
+
 
 }

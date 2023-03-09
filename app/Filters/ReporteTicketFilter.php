@@ -27,10 +27,10 @@ class ReporteTicketFilter extends ModelFilter
         });
     }
 
-    public function userReport($userReport):ReporteFilter{
-        return $this->WhereHas('user', function(Builder $query) use ($userReport){
-            $query->where('name', 'LIKE', '%'.$userReport.'%')
-                  ->orWhere('email', 'LIKE', '%'.$userReport.'%');
+    public function reportedBy($ReportedBy):ReporteFilter{
+        return $this->whereHas('user',function(Builder $query)use ($ReportedBy){
+            $query->where('name', 'LIKE', '%'.$ReportedBy.'%')
+                  ->orWhere('email', 'LIKE', '%'.$ReportedBy.'%');
         });
     }
 

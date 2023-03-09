@@ -144,7 +144,7 @@ export default {
                 agent_id:null,
                 department_id:null,
                 ticket_id:null,
-                userReport_id:null,
+                reportedBy_id:null,
                 tituloReporte:'',
                 razonReporte:'',
                 attachments: [],
@@ -162,7 +162,8 @@ export default {
         },
       })
         .then((response) => {
-          this.report.userReport_id = response.data.id;
+          this.report.reportedBy_id = response.data.id;
+          
           //console.log(this.userId);
         })
         .catch((error) => {
@@ -171,7 +172,7 @@ export default {
     }
   },
     mounted() {
-        
+        console.log("hola");
         this.getFilters();
         this.getCannedReplies();
         this.getTicketToSend();
