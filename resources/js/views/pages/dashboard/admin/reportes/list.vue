@@ -245,44 +245,7 @@
         </div>
         <loading :status="loading"/>
         <div class="tickets-list">
-            <template v-if="ticketList.length > 0">
-                <!-- <div class="sm:hidden">
-                    <ul class="border-b border-gray-200 divide-y divide-gray-200">
-                        <template v-for="ticket in ticketList">
-                            <li>
-                                <router-link
-                                    :to="'/dashboard/tickets/' + ticket.uuid + '/manage'"
-                                    class="flex items-center justify-between px-4 py-4 hover:bg-gray-100 sm:px-6"
-                                >
-                                    <div class="flex items-center truncate space-x-3">
-                                        <img
-                                            :alt="$t('Avatar')"
-                                            :src="ticket.user.avatar !== 'gravatar' ? ticket.user.avatar : ticket.user.gravatar"
-                                            class="h-8 w-8 mr-4 rounded-full"
-                                        >
-                                        <div class="whitespace-no-wrap">
-                                            <div class="text-sm leading-5 text-gray-900">
-                                                <template v-for="label in ticket.labels">
-                                                    <div
-                                                        :style="{backgroundColor: label.color}"
-                                                        class="inline-flex items-center px-2 py-0.5 mr-1 rounded text-xs font-medium leading-4 text-gray-100"
-                                                    >
-                                                        {{ label.name }}
-                                                    </div>
-                                                </template>
-                                                {{ ticket.subject }}
-                                            </div>
-                                            <div class="text-sm leading-5 text-gray-500 w-full truncate">
-                                                {{ ticket.lastReply ? ticket.lastReply.body : null }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <svg-vue class="ml-4 h-5 w-5 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-600 transition ease-in-out duration-150" icon="font-awesome.angle-right-regular"></svg-vue>
-                                </router-link>
-                            </li>
-                        </template>
-                    </ul>
-                </div> -->
+            <template v-if="ticketList.length > 0"> 
                 <div class="hidden sm:block">
                     <div class="align-middle inline-block min-w-full border-b border-gray-200">
                     <table class="min-w-full divide-y divide-gray-200">
@@ -382,7 +345,7 @@
                     </div>
                 </div>
             </template>
-            <!-- <template v-else-if="!loading">
+             <template v-else-if="!loading">
                 <div class="h-full flex">
                     <div class="m-auto">
                         <div class="grid grid-cols-1 justify-items-center h-full w-full p-4">
@@ -392,17 +355,17 @@
                             <div class="flex justify-center items-center">
                                 <div class="w-full font-semibold text-2xl">{{ $t('No records found') }}</div>
                             </div>
-                            <template v-if="anyFilter">
+                            <!-- <template v-if="anyFilter">
                                 <div class="flex justify-center items-center">
                                     <div>{{ $t('Try changing the filters, or rephrasing your search') }}.</div>
                                 </div>
-                            </template>
+                            </template> -->
                         </div>
                     </div>
                 </div>
-            </template> -->
+            </template> 
         </div>
-        <!-- <nav class="bg-white absolute bottom-0 left-0 w-full px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+         <nav class="bg-white absolute bottom-0 left-0 w-full px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
             <div class="hidden sm:block">
                 <p class="text-sm leading-5 text-gray-700">
                     {{ $t('Showing') }}
@@ -434,7 +397,7 @@
                     {{ $t('Next') }}
                 </button>
             </div>
-        </nav> -->
+        </nav> 
     </div>
 </template>
 
