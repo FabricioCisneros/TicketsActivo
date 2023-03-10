@@ -10,107 +10,6 @@
                             <button class="btn p-4 rounded-none" type="button" @click="$router.push('/dashboard/tickets')">
                                 <svg-vue class="h-5 w-5 text-gray-700" icon="font-awesome.chevron-left-regular"></svg-vue>
                             </button>
-
-                            <div v-on-clickaway="closeActionDropdown" class="block">
-                                <div class="relative inline-block text-left">
-                                    <button v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.Admin.AsignUserController']"
-                                    class="btn p-4 rounded-none" title="Asignar responsable" type="button" @click="toggleActionDropdown('agent')">
-                                        <svg-vue class="h-5 w-5 text-gray-700" icon="font-awesome.user-tag-regular"></svg-vue>
-                                        
-                                    </button>
-                                    <div v-show="actions.agent" class="origin-top-right absolute left-0 mt-1 w-56 rounded-md shadow-lg z-20">
-                                        <div class="rounded-md bg-white shadow-xs">
-                                            <div class="py-1">
-                                                <template v-for="agent in agentList">
-                                                    <a
-                                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                                        href="#"
-                                                        role="menuitem"
-                                                        @click.prevent="action('agent', agent.id)"
-                                                    >
-                                                        {{ agent.name }}
-                                                    </a>
-                                                </template>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="relative inline-block text-left">
-                                    <button class="btn p-4 rounded-none" title="Asignar departamento" type="button" @click="toggleActionDropdown('department')">
-                                        <svg-vue class="h-5 w-5 text-gray-700" icon="font-awesome.users-class-regular"></svg-vue>
-                                    </button>
-                                    <div v-show="actions.department" class="origin-top-right absolute left-0 mt-1 w-56 rounded-md shadow-lg z-20">
-                                        <div class="rounded-md bg-white shadow-xs">
-                                            <div class="py-1">
-                                                <template v-for="department in departmentList">
-                                                    <!-- <a
-                                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                                    href="#"
-                                                    role="menuitem"
-                                                    @click.prevent="action('department', department.id)"  
-                                                    >
-                                                        {{ department.name }}
-                                                    </a> -->
-
-                                                    <a
-                                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                                    href="#"
-                                                    role="menuitem"
-                                                    @click="openAssignDepartmentModal(department.id,department.name)" 
-                                                    >
-                                                        {{ department.name }}
-                                                    </a>
-                                                    
-                                                </template>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="relative inline-block text-left">
-                                    <button class="btn p-4 rounded-none" title="clasificar por etiqueta" type="button" @click="toggleActionDropdown('label')">
-                                        <svg-vue class="h-5 w-5 text-gray-700" icon="font-awesome.tags-regular"></svg-vue>
-                                    </button>
-                                    <div v-show="actions.label" class="origin-top-right absolute left-0 mt-1 w-56 rounded-md shadow-lg z-20">
-                                        <div class="rounded-md bg-white shadow-xs">
-                                            <div class="py-1">
-                                                <template v-for="label in labelList">
-                                                    <a
-                                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                                        href="#"
-                                                        role="menuitem"
-                                                        @click.prevent="action('label', label.id)"
-                                                    >
-                                                        {{ label.name }}
-                                                    </a>
-                                                </template>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="relative inline-block text-left">
-                                    <button v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.Admin.SetPriorityController']" class="btn p-4 rounded-none" title="Asignar prioridad" type="button" @click="toggleActionDropdown('priority')">
-                                        <svg-vue class="h-5 w-5 text-gray-700" icon="font-awesome.pennant-regular"></svg-vue>
-                                    </button>
-                                    <div v-show="actions.priority" class="origin-top-right absolute left-0 mt-1 w-56 rounded-md shadow-lg z-20">
-                                        <div class="rounded-md bg-white shadow-xs">
-                                            <div class="py-1">
-                                                <template v-for="priority in priorityList">
-                                                    <a
-                                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                                        href="#"
-                                                        role="menuitem"
-                                                        @click.prevent="action('priority', priority.id)"
-                                                    >
-                                                        {{ priority.name }}
-                                                    </a>
-                                                </template>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>                                
-                            </div>
-
                              <button v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.Admin.DeleteTicketController']"
                             class="btn p-4 rounded-none" title="Eliminar ticket" type="button" @click="deleteTicketModal = true">
                                 <svg-vue class="h-5 w-5 text-gray-700" icon="font-awesome.trash-alt-regular"></svg-vue>
@@ -574,7 +473,7 @@ export default {
         getTicket() {
             const self = this;
             self.loading.form = true;
-            axios.get('api/dashboard/tickets/' + self.$route.params.uuid).then(function (response) {
+            axios.get('api/dashboard/reportes/' + self.$route.params.uuid).then(function (response) {
                 self.loading.form = false;
                 self.ticket = response.data;
                 self.ticketReply.status_id = response.data.status_id;

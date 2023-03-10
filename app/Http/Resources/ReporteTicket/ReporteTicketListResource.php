@@ -23,6 +23,7 @@ class ReporteTicketListResource extends JsonResource
 
         return [
             'id'=>$reportTicket->id,
+            'uuid'=>$reportTicket->uuid,
             'tituloReporte'=>$reportTicket->tituloReporte,
             'razonReporte'=>$reportTicket->razonReporte,
             'user'=>new UserDetailsResource($reportTicket->user),

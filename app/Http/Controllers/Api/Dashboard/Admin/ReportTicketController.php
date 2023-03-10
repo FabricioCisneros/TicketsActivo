@@ -13,12 +13,13 @@ use App\Models\ReporteTicket;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
-
+use Str;
 class ReportTicketController extends Controller
 {
     public function store(Request $request):JsonResponse{
         $Report=new ReporteTicket;
 
+        $Report->uuid = Str::uuid();
         $Report->user_id=$request->input('user_id');
         $Report->agent_id=$request->input('agent_id');
         $Report->reportedBy_id=$request->input('reportedBy_id');

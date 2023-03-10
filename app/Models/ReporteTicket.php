@@ -23,6 +23,10 @@ class ReporteTicket extends Model
         'razon_reporte'=>'integer'
     ];
 
+    public function getRouteKeyName(): string
+    {
+        return 'uuid';
+    }
 
     public function user():BelongsTo{
         return $this->belongsTo(User::class);
