@@ -7,7 +7,7 @@
                 </div>
                 <div class="mt-4 flex md:mt-0 md:ml-4">
                     
-                    <div class="rounded-md shadow-sm mr-4">
+                    <!-- <div class="rounded-md shadow-sm mr-4">
                         <button
                             id="filter-button"
                             class="inline-flex justify-center w-full rounded-md border border-gray-400 px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150"
@@ -232,7 +232,7 @@
                                 </section>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <button
                         type="button"
                         class="rounded-md border border-gray-400 px-3 py-2 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150"
@@ -246,7 +246,7 @@
         <loading :status="loading"/>
         <div class="tickets-list">
             <template v-if="ticketList.length > 0">
-                <div class="sm:hidden">
+                <!-- <div class="sm:hidden">
                     <ul class="border-b border-gray-200 divide-y divide-gray-200">
                         <template v-for="ticket in ticketList">
                             <li>
@@ -282,10 +282,10 @@
                             </li>
                         </template>
                     </ul>
-                </div>
+                </div> -->
                 <div class="hidden sm:block">
                     <div class="align-middle inline-block min-w-full border-b border-gray-200">
-                        <!-- <table class="min-w-full divide-y divide-gray-200">
+                    <table class="min-w-full divide-y divide-gray-200">
                             <thead>
                             <tr>
                                 <th class="hidden lg:table-cell px-3 py-2 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">
@@ -317,16 +317,16 @@
                                         <div class="flex-shrink-0 h-10 w-10">
                                             <img
                                                 :alt="$t('Avatar')"
-                                                :src="ticket.user.avatar !== 'gravatar' ? ticket.user.avatar : ticket.user.gravatar"
+                                                :src="ticket.reportedBy.avatar !== 'gravatar' ? ticket.reportedBy.avatar : ticket.reportedBy.gravatar"
                                                 class="h-10 w-10 rounded-full"
                                             >
                                         </div>
                                         <div class="ml-4">
                                             <div class="text-sm leading-5 font-medium text-gray-900">
-                                                {{ ticket.user.name }}
+                                                {{ ticket.reportedBy.name }}
                                             </div>
                                             <div class="text-sm leading-5 text-gray-500">
-                                                {{ ticket.user.email }}
+                                                {{ ticket.reportedBy.email }}
                                             </div>
                                         </div>
                                     </div>
@@ -336,54 +336,38 @@
                                             <div class="flex-shrink-0 h-10 w-10">
                                                 <img
                                                     :alt="$t('Avatar')"
-                                                    :src="ticket.user.avatar !== 'gravatar' ? ticket.user.avatar : ticket.user.gravatar"
+                                                    :src="ticket.agent.avatar !== 'gravatar' ? ticket.agent.avatar : ticket.agent.gravatar"
                                                     class="h-10 w-10 rounded-full"
                                                 >
                                             </div>
                                             <div class="ml-4">
                                                 <div class="text-sm leading-5 font-medium text-gray-900">
-                                                    {{ ticket.user.name }}
+                                                    {{ ticket.agent.name }}
                                                 </div>
                                                 <div class="text-sm leading-5 text-gray-500">
-                                                    {{ ticket.user.email }}
+                                                    {{ ticket.agent.email }}
                                                 </div>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="hidden lg:table-cell px-3 py-4 whitespace-no-wrap leading-5">
                                         <div class="flex items-center">
-                                            <template v-for="label in ticket.labels">
-                                                <div
-                                                    :style="{backgroundColor: label.color}"
-                                                    class="hidden lg:inline-flex items-center px-2 py-0.5 mr-1 rounded text-xs font-medium leading-4 text-gray-100"
-                                                >
-                                                    {{ label.name }}
-                                                </div>
-                                            </template>
                                             <div class="w-full truncate">
-                                                {{ ticket.subject }}
+                                                {{ ticket.ticket.subject }}
                                             </div>
                                         </div>
                                         <div class="text-sm leading-5 text-gray-500 w-full truncate">
-                                            {{ ticket.lastReply ? ticket.lastReply.body : null }}
+                                            {{ ticket.ticket.ticketReplies ? ticket.ticket.ticketReplies.body : null }}
                                         </div>
                                     </td>
                                     <td class="hidden lg:table-cell px-3 py-4 whitespace-no-wrap leading-5">
                                         <div class="flex items-center">
-                                            <template v-for="label in ticket.labels">
-                                                <div
-                                                    :style="{backgroundColor: label.color}"
-                                                    class="hidden lg:inline-flex items-center px-2 py-0.5 mr-1 rounded text-xs font-medium leading-4 text-gray-100"
-                                                >
-                                                    {{ label.name }}
-                                                </div>
-                                            </template>
                                             <div class="w-full truncate">
-                                                {{ ticket.subject }}
+                                                {{ ticket.tituloReporte }}
                                             </div>
                                         </div>
                                         <div class="text-sm leading-5 text-gray-500 w-full truncate">
-                                            {{ ticket.lastReply ? ticket.lastReply.body : null }}
+                                            {{ ticket.razonReporte}}
                                         </div>
                                     </td>
                                     <td class="px-3 py-4 whitespace-no-wrap leading-5">
@@ -393,12 +377,12 @@
                                     </td>
                                 </router-link>
                             </template>
-                            </tbody>
-                        </table> -->
+                            </tbody> 
+                        </table> 
                     </div>
                 </div>
             </template>
-            <template v-else-if="!loading">
+            <!-- <template v-else-if="!loading">
                 <div class="h-full flex">
                     <div class="m-auto">
                         <div class="grid grid-cols-1 justify-items-center h-full w-full p-4">
@@ -416,9 +400,9 @@
                         </div>
                     </div>
                 </div>
-            </template>
+            </template> -->
         </div>
-        <nav class="bg-white absolute bottom-0 left-0 w-full px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+        <!-- <nav class="bg-white absolute bottom-0 left-0 w-full px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
             <div class="hidden sm:block">
                 <p class="text-sm leading-5 text-gray-700">
                     {{ $t('Showing') }}
@@ -450,7 +434,7 @@
                     {{ $t('Next') }}
                 </button>
             </div>
-        </nav>
+        </nav> -->
     </div>
 </template>
 
@@ -470,15 +454,6 @@ export default {
             loading: true,
             filtersSidebar: false,
             userId:'',
-            // filters: {
-            //     search: '',
-            //     user: '',
-            //     agents: [],
-            //     departments: [],
-            //     labels: [],
-            //     statuses: [1, 2],
-            //     priorities: [],
-            // },
             filters: {
                 search: '',
                 user: '',
@@ -527,14 +502,6 @@ export default {
         });
     }
   },
-    computed: {
-        anyFilter() {
-            return this.filters.search !== ''
-                || this.filters.user !== ''
-                || this.filters.agents !== 0
-                || this.filters.departments.length !== 0;
-        }
-    },
     filters: {
         momentFormatDateTimeAgo: function (value) {
             return moment(value).locale(window.app.app_date_locale).fromNow();
@@ -573,43 +540,6 @@ export default {
             }
             self.getTickets();
         },
-        // getTickets() {
-        //     const self = this;
-        //     self.loading = true;
-        //     axios.get('api/dashboard/tickets', {
-        //         params: {
-        //             page: self.page,
-        //             sort: self.sort,
-        //             perPage: self.perPage,
-        //             search: self.filters.search,
-        //             user: self.filters.user,
-        //             agents: self.filters.agents,
-        //             departments: self.filters.departments,
-        //             labels: self.filters.labels,
-        //             statuses: self.filters.statuses,
-        //             priorities: self.filters.priorities,
-        //         }
-        //     }).then(function (response) {
-        //         console.log(response.data.items);
-        //         self.ticketList = response.data.items;
-        //         self.pagination = response.data.pagination;
-        //         console.log(self.ticketList);
-        //         if (self.pagination.totalPages < self.pagination.currentPage) {
-        //             self.page = self.pagination.totalPages;
-        //             self.getTickets();
-        //         } else {
-        //             if (self.ticketList.length === 0) {
-        //                 self.selectAll = false;
-        //                 self.selectedRows = [];
-        //             }
-        //             self.loading = false;
-                    
-        //         }
-                
-        //     }).catch(function () {
-        //         self.loading = false;
-        //     });
-        // },
         getTickets() {
             const self = this;
             self.loading = true;
@@ -628,25 +558,17 @@ export default {
                  //console.log(response.data.items);
                 self.ticketList = response.data.items;
                 console.log(self.ticketList);
-                // self.pagination = response.data.pagination;
-                // console.log(self.ticketList);
-                // if (self.pagination.totalPages < self.pagination.currentPage) {
-                //     self.page = self.pagination.totalPages;
-                //     self.getTickets();
-                // } else {
-                //     self.loading = false;
+                self.pagination = response.data.pagination;
+                if (self.pagination.totalPages < self.pagination.currentPage) {
+                    self.page = self.pagination.totalPages;
+                    self.getTickets();
+                } else {
+                    self.loading = false;
                     
-                // }
+                 }
                 
             }).catch(function () {
                 self.loading = false;
-            });
-        },
-        getFilters() {
-            const self = this;
-            axios.get('api/dashboard/tickets/filters').then(function (response) {
-                self.agentList = response.data.agents;
-                self.departmentList = response.data.departments;
             });
         },
     }
