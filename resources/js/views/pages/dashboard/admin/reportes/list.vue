@@ -294,25 +294,32 @@
                                         </div>
                                     </div>
                                 </td>
-                                    <td class="hidden lg:table-cell px-3 py-4 whitespace-no-wrap leading-5">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0 h-10 w-10">
-                                                <img
-                                                    :alt="$t('Avatar')"
-                                                    :src="ticket.agent.avatar !== 'gravatar' ? ticket.agent.avatar : ticket.agent.gravatar"
-                                                    class="h-10 w-10 rounded-full"
-                                                >
+                                <td class="hidden lg:table-cell px-3 py-4 whitespace-no-wrap leading-5">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-10 w-10">
+                                            <img
+                                            :alt="$t('Avatar')"
+                                            v-if="ticket.user && ticket.user.avatar !== 'gravatar'"
+                                            :src="ticket.user.avatar"
+                                            class="h-10 w-10 rounded-full"
+                                        >
+                                        <img
+                                            :alt="$t('Avatar')"
+                                            v-else-if="ticket.user && ticket.user.avatar === 'gravatar'"
+                                            :src="ticket.user.gravatar"
+                                            class="h-10 w-10 rounded-full"
+                                        >
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm leading-5 font-medium text-gray-900">
+                                                {{ ticket.user ? ticket.user.name : 'No hay agente al que se asigno' }}
                                             </div>
-                                            <div class="ml-4">
-                                                <div class="text-sm leading-5 font-medium text-gray-900">
-                                                    {{ ticket.agent.name }}
-                                                </div>
-                                                <div class="text-sm leading-5 text-gray-500">
-                                                    {{ ticket.agent.email }}
-                                                </div>
+                                            <div class="text-sm leading-5 text-gray-500">
+                                                {{ ticket.user ? ticket.user.email : '' }}
                                             </div>
                                         </div>
-                                    </td>
+                                    </div>
+                                </td>
                                     <td class="hidden lg:table-cell px-3 py-4 whitespace-no-wrap leading-5">
                                         <div class="flex items-center">
                                             <div class="w-full truncate">
