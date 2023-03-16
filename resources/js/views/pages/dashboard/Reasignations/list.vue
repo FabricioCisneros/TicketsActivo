@@ -418,7 +418,6 @@ export default {
                     ReassignedBy:self.ReassignedBy,
                 }
             }).then(function (response) {
-                console.log(response.data.items);
                 
                 self.ticketList = response.data.items;
                 self.pagination = response.data.pagination;

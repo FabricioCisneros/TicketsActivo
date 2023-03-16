@@ -117,6 +117,7 @@ class TicketController extends Controller
         $ticket->priority_id = $request->get('priority_id');
         $ticket->department_id = $request->get('department_id');
         $ticket->user_id = $request->get('user_id');
+        $ticket->expiry_date = Carbon::now()->addHours(24); 
         $ticket->agent_id = Auth::id();
         $ticket->saveOrFail();
         $ticketReply = new TicketReply();

@@ -828,10 +828,10 @@ export default {
                     priorities: self.filters.priorities,
                 }
             }).then(function (response) {
-               console.log(response.data.items);
+              
                 self.ticketList = response.data.items;
                 self.pagination = response.data.pagination;
-               // console.log(self.ticketList);
+               
                 if (self.pagination.totalPages < self.pagination.currentPage) {
                     self.page = self.pagination.totalPages;
                     self.getTickets();

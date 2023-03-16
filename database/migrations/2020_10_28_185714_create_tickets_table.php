@@ -25,6 +25,7 @@ class CreateTicketsTable extends Migration
                 $table->foreignId('agent_id')->nullable()->constrained('users')->nullOnDelete();
                 $table->foreignId('closed_by')->nullable()->constrained('users')->nullOnDelete();
                 $table->timestamp('closed_at')->nullable();
+                $table->timestamp('expiry_date')->nullable();
                 $table->timestamps();
             });
         }
@@ -37,6 +38,8 @@ class CreateTicketsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('tickets');
+        Schema::enableForeignKeyConstraints();
     }
 }

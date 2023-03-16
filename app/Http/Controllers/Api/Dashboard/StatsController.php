@@ -24,6 +24,7 @@ class StatsController extends Controller
             'pending_tickets' => Ticket::where('status_id', 2)->count(),
             'solved_tickets' => Ticket::whereIn('status_id', [3, 4])->count(),
             'without_agent' => Ticket::whereNull('agent_id')->count(),
+            'expired_tickets'=>Ticket::where('status_id',5)->count(),
         ]);
     }
 

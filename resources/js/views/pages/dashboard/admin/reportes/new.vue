@@ -172,7 +172,7 @@ export default {
     }
   },
     mounted() {
-        console.log("hola");
+       
         this.getFilters();
         this.getCannedReplies();
         this.getTicketToSend();
@@ -198,7 +198,6 @@ export default {
                 //console.log(response.data)
                 self.loading.form = false;
                 self.ticketDetail = response.data;
-                console.log("DATA RESPONSE",self.ticketDetail)
             }).catch(function () {
                
             });
@@ -230,7 +229,6 @@ export default {
                 self.loading.form =false;
             });
                
-            console.log("console::: ",self.report);
         },
         selectUploadFile() {
             if (!this.loading.file) {

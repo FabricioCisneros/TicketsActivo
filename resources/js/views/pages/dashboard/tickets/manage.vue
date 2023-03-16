@@ -204,9 +204,9 @@
                                                     aria-label="Sort by"
                                                     class="block form-select pl-3 pr-9 py-2 border-l border-r-0 border-t-0 border-b-0 border-gray-400 rounded-none bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
                                                 >
-                                                    <template v-for="status in statusList">
-                                                        <option :value="status.id">{{ status.name }}</option>
-                                                    </template>
+                                                <template v-for="status in statusList">
+                                                    <option v-if="status.id !== 5" :value="status.id">{{ status.name }}</option>
+                                                  </template>
                                                 </select>
                                                 <button
                                                     class="btn btn-green rounded-none"

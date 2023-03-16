@@ -72,6 +72,7 @@ class Ticket extends Model
         'user_id' => 'integer',
         'agent_id' => 'integer',
         'closed_at' => 'datetime',
+        'expiry_date'=>'datetime'
     ];
 
     public function getRouteKeyName(): string

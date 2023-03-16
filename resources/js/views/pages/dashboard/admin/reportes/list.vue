@@ -295,7 +295,7 @@ export default {
             }).then(function (response) {
                  //console.log(response.data.items);
                 self.ticketList = response.data.items;
-                console.log(self.ticketList);
+              
                 self.pagination = response.data.pagination;
                 if (self.pagination.totalPages < self.pagination.currentPage) {
                     self.page = self.pagination.totalPages;
