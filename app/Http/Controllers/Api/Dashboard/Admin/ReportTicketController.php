@@ -12,6 +12,7 @@ use App\Models\Reasignacion;
 use App\Models\ReporteTicket;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Str;
 class ReportTicketController extends Controller
@@ -52,5 +53,13 @@ class ReportTicketController extends Controller
                 'totalPages' => $items->lastPage()
             ]
         ]);
+    }
+
+    public function show(ReporteTicket $reporteTicket): JsonResponse
+    {
+        if ($reporteTicket->user_id !== Auth::id()) {
+            return response()->json(['message' => __('Not found')], 404);
+        }
+        return response()->json(new TicketDetailsResource($reporteTicket)); 
     }
 }

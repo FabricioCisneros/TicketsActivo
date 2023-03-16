@@ -109,7 +109,7 @@ class TicketController extends Controller
         if ($ticket->user_id !== Auth::id()) {
             return response()->json(['message' => __('Not found')], 404);
         }
-        return response()->json(new TicketDetailsResource($ticket));
+        return response()->json(new TicketDetailsResource($ticket)); 
     }
 
     /**
