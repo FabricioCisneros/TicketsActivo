@@ -60,12 +60,14 @@ Route::get('tickets/statuses', [UserTicketController::class, 'statuses'])->name(
 Route::get('tickets/departments', [UserTicketController::class, 'departments'])->name('tickets.departments');
 Route::post('tickets/attachments', [FileFileController::class, 'uploadAttachment'])->name('tickets.upload-attachment');
 Route::post('tickets/{ticket}/reply', [UserTicketController::class, 'reply'])->name('tickets.reply');
+
 Route::apiResource('tickets', UserTicketController::class)->except(['update', 'destroy']);
 
 
 
 Route::post('dashboard/RDtickets', [DashboardRDTicket::class, 'store'])->name('dashboard.RDtickets.store');
 Route::get('dashboard/RDtickets/list',[DashboardRDTicket::class, 'index'])->name('dashboard.RDtickets.index');
+// Route::get('/dashboard/admin/ReportTicket/{uuid}', 'DashboardAdminReportTicketController@show');
 
 Route::group(['prefix' => 'dashboard'], static function () {
 
@@ -82,7 +84,11 @@ Route::group(['prefix' => 'dashboard'], static function () {
     Route::post('tickets/{ticket}/remove-label', [DashboardTicketController::class, 'removeLabel'])->name('dashboard.tickets.remove-label');
     Route::post('tickets/{ticket}/quick-actions', [DashboardTicketController::class, 'ticketQuickActions'])->name('dashboard.tickets.ticket-quick-actions');
     Route::post('tickets/{ticket}/reply', [DashboardTicketController::class, 'reply'])->name('dashboard.tickets.reply');
+    
+    
     Route::apiResource('tickets', DashboardTicketController::class)->except(['update']);
+    
+    
     //Route::post('RDtickets', [DashboardRDTicket::class, 'store'])->name('dashboard.RDticket.store');
     
     
@@ -109,6 +115,7 @@ Route::group(['prefix' => 'dashboard'], static function () {
         Route::apiResource('CreateDirectTicketController',DashboardAdminCreateDirectTicketController::class);
 
         Route::apiResource('ReportTicket', DashboardAdminReportTicketController::class);
+       
 
         Route::apiResource('priorities', DashboardAdminPriorityController::class)->except(['store', 'delete']);
 

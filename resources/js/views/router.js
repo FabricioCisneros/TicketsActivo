@@ -34,7 +34,7 @@ import ReportTicketNew from "@/views/pages/dashboard/admin/reportes/new"
 
 import ReportTicketListPage from "@/views/pages/dashboard/admin/reportes/list";
 import ReportTicketNewPage from "@/views/pages/dashboard/admin/reportes/new";
-import ReportTicketsManage from "@/views/pages/dashboard/admin/reportes/manage";
+import ReportTicketManage from "@/views/pages/dashboard/admin/reportes/manage";
 //TERMINA
 
 import AdminDashboardDepartmentsList from "@/views/pages/dashboard/admin/departments/list";
@@ -148,13 +148,12 @@ let routes = [
                 props: (route) => ({ UUIDSend: route.params.UUIDSend }),
               },
               { 
-                path: 'tickets/:uuid/manage', 
-                name: 'dashboard-admin-reportes-manage',
-                component: ReportTicketsManage, 
+                path: 'admin/reportes/:uuid/manage', 
+                component: ReportTicketManage, 
                 meta: {
                   middleware: 'auth', 
                   dashboard_access: true, 
-                  controller: 'App.Http.Controllers.Api.Dashboard.RDTicket'
+                  controller: 'App.Http.Controllers.Api.Dashboard.Admin.ReportTicketController'
                 },
               },
 

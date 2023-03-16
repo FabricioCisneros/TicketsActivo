@@ -5,8 +5,9 @@ namespace App\Http\Controllers\Api\Dashboard\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Reassigment\ReassigmentListResource;
 use App\Http\Resources\Reassigment\ReassignmentResource;
-use App\Http\Resources\Reporte\ReporteListResource;
+use App\Http\Resources\ReporteTicket\ReporteTicketDetailsResource;
 use App\Http\Resources\ReporteTicket\ReporteTicketListResource;
+use App\Http\Resources\ReporteTicket\ReporteTicketManageResource;
 use App\Http\Resources\Ticket\TicketListResource;
 use App\Models\Reasignacion;
 use App\Models\ReporteTicket;
@@ -55,11 +56,13 @@ class ReportTicketController extends Controller
         ]);
     }
 
-    public function show(ReporteTicket $reporteTicket): JsonResponse
-    {
-        if ($reporteTicket->user_id !== Auth::id()) {
-            return response()->json(['message' => __('Not found')], 404);
-        }
-        return response()->json(new TicketDetailsResource($reporteTicket)); 
-    }
+    // public function show(ReporteTicket $reporteTicket): JsonResponse
+    // {
+    //     return response()->json(new ReporteTicketDetailsResource($reporteTicket));
+    // }
+        public function show(string $uuid): JsonResponse
+                {
+                    $reporteTicket = ReporteTicket::where('uuid', $uuid)->firstOrFail();
+                    return response()->json(new ReporteTicketDetailsResource($reporteTicket));
+                }
 }

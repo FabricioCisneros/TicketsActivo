@@ -44,7 +44,7 @@
                             <tbody class="bg-white divide-y divide-gray-100">
                             <template v-for="ticket in ticketList">
                                 <router-link
-                                    :to="'/dashboard/reportes/' + ticket.uuid + '/manage'"
+                                    :to="'/dashboard/admin/reportes/' + ticket.uuid + '/manage'"
                                     class="cursor-pointer hover:bg-gray-100"
                                     tag="tr"
                                 >

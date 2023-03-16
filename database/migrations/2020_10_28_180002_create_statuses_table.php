@@ -24,7 +24,7 @@ class CreateStatusesTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
+     *2020_10_28_180002_create_statuses_table
      * @return void
      */
     public function down()

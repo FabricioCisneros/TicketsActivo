@@ -91,6 +91,7 @@
             to="/dashboard/admin/languages"
         ></menu-item>
         <menu-item
+        v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.Admin.ReportTicketController']"
         :label="$t('reportes de tickets')"
         :mobile="mobile"
         icon="font-awesome.circle-exclamation-solid"

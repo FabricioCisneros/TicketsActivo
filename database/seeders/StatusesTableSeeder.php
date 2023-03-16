@@ -22,6 +22,7 @@ class StatusesTableSeeder extends Seeder
                 ['name' => 'Pendiente', 'created_at' => $now, 'updated_at' => $now],
                 ['name' => 'Resuelto', 'created_at' => $now, 'updated_at' => $now],
                 ['name' => 'Cerrado', 'created_at' => $now, 'updated_at' => $now],
+                ['name' => 'Caducado', 'created_at' => $now, 'updated_at' => $now],
             ]);
         }
     }
