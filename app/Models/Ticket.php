@@ -71,8 +71,8 @@ class Ticket extends Model
         'departmen t_id' => 'integer',
         'user_id' => 'integer',
         'agent_id' => 'integer',
-        'closed_at' => 'datetime',
-        'expiry_date'=>'datetime'
+        'closed_at' => 'datetime:m-d-Y H:i:sP',
+        'expiry_date'=>'datetime:m-d-Y H:i:sP'
     ];
 
     public function getRouteKeyName(): string

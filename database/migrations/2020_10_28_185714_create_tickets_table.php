@@ -24,9 +24,10 @@ class CreateTicketsTable extends Migration
                 $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
                 $table->foreignId('agent_id')->nullable()->constrained('users')->nullOnDelete();
                 $table->foreignId('closed_by')->nullable()->constrained('users')->nullOnDelete();
-                $table->timestamp('closed_at')->nullable();
-                $table->timestamp('expiry_date')->nullable();
-                $table->timestamps();
+                $table->timestamp('closed_at')->nullable()->timezone('-06:00');
+                $table->timestamp('expiry_date')->nullable()->timezone('-06:00');
+                $table->timestamp('created_at')->useCurrent()->nullable()->timezone('-06:00');
+                $table->timestamp('updated_at')->useCurrent()->nullable()->timezone('-06:00');
             });
         }
     }

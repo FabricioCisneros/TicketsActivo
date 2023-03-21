@@ -39,13 +39,16 @@ class CheckExpiredTickets extends Command
      */
     public function handle()
     {
-        $expiredTickets=Ticket::where('status_id',1)
+        $expiredTickets=Ticket::where('agent_id',null)
                               ->where('expiry_date', '<=',Carbon::now())
                               ->get();
         
         foreach($expiredTickets as $ticket){
-            $ticket->status_id=5;
-            $ticket->save();
+            if($ticket->expiry_date <= Carbon::now()){
+                $ticket->status_id=5;
+                $ticket->save();
+            }
+
         }
 
         $this->info('Expired tickets checked');
