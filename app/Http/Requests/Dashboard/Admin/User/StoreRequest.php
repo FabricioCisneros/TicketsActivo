@@ -40,21 +40,21 @@ class StoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => __('The :attribute field is required', ['attribute' => __('name')]),
-            'name.max' => __('The :attribute may not be greater than :max characters', ['attribute' => __('name'), 'max' => 255]),
+            'name.required' => __('el campo :attribute es requerido', ['attribute' => __('name')]),
+            'name.max' => __('El campo :attribut no debe ser mayor a :max caracteres', ['attribute' => __('name'), 'max' => 255]),
 
             
-            'email.email' => __('The :attribute must be a valid email address', ['attribute' => __('email')]),
-            'email.max' => __('The :attribute may not be greater than :max characters', ['attribute' => __('email'), 'max' => 255]),
-            'email.unique' => __('The :attribute has already been taken', ['attribute' => __('email')]),
+            'email.email' => __('El campo :attribute debe ser un email valido', ['attribute' => __('email')]),
+            'email.max' => __('El campo :attribute no debe ser mayor a :max caracteres', ['attribute' => __('email'), 'max' => 255]),
+            'email.unique' => __('El campo :attribute Ya esta en uso', ['attribute' => __('email')]),
 
-            'status.required' => __('The :attribute field is required', ['attribute' => __('status')]),
+            'status.required' => __('El campo :attribute es requerido', ['attribute' => __('status')]),
 
-            'role_id.required' => __('The :attribute field is required', ['attribute' => __('role')]),
-            'role_id.exists' => __('The selected :attribute is invalid', ['attribute' => __('role')]),
+            'role_id.required' => __('El campo :attribute es requerido', ['attribute' => __('role')]),
+            'role_id.exists' => __('El :attribute es un invalido', ['attribute' => __('role')]),
 
-            'password.required' => __('The :attribute field is required', ['attribute' => __('password')]),
-            'password.min' => __('The :attribute must be at least :min characters', ['attribute' => __('password'), 'min' => 6]),
+            'password.required' => __('El campo :attribute es requerido', ['attribute' => __('password')]),
+            'password.min' => __('El campo :attribute debe tener al menos :min caracteres', ['attribute' => __('password'), 'min' => 6]),
         ];
     }
 }

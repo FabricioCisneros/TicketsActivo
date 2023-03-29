@@ -39,17 +39,17 @@ class DetailsRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => __('The :attribute field is required', ['attribute' => __('name')]),
+            'name.required' => __('El campo :attribute es requerido', ['attribute' => __('name')]),
             'name.max' => __('The :attribute may not be greater than :max characters', ['attribute' => __('name'), 'max' => 255]),
 
-            'email.required' => __('The :attribute field is required', ['attribute' => __('email')]),
-            'email.email' => __('The :attribute must be a valid email address', ['attribute' => __('email')]),
-            'email.max' => __('The :attribute may not be greater than :max characters', ['attribute' => __('email'), 'max' => 255]),
-            'email.unique' => __('The :attribute has already been taken', ['attribute' => __('email')]),
+            'email.required' => __('El campo :attribute es requerido', ['attribute' => __('email')]),
+            'email.email' => __('El campo :attribute debe ser un email valido', ['attribute' => __('email')]),
+            'email.max' => __('El campo :attribute no debe ser mayor a :max caracteres', ['attribute' => __('email'), 'max' => 255]),
+            'email.unique' => __('El campo :attribute ya esta en uso', ['attribute' => __('email')]),
 
-            'avatar.image' => __('The file has to be an image', ['attribute' => __('avatar')]),
-            'avatar.max' => __('The :attribute may not be greater than :max kilobytes', ['attribute' => __('avatar'), 'max' => 1000]),
-            'avatar.dimensions' => __('The :attribute has invalid image dimensions', ['attribute' => __('avatar')])
+            'avatar.image' => __('El archivo debe ser una imagen', ['attribute' => __('avatar')]),
+            'avatar.max' => __('El archivo :attribute no debe ser mayor a :max kilobytes', ['attribute' => __('avatar'), 'max' => 1000]),
+            'avatar.dimensions' => __('el archivo :attribute debe tener dimensiones validas', ['attribute' => __('avatar')])
         ];
     }
 }

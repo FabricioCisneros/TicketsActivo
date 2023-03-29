@@ -37,11 +37,11 @@ class UpdateRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => __('The :attribute field is required', ['attribute' => __('name')]),
-            'name.max' => __('The :attribute may not be greater than :max characters', ['attribute' => __('name'), 'max' => 255]),
+            'name.required' => __('El campo :attribute es requerido', ['attribute' => __('name')]),
+            'name.max' => __('El campo :attribute no debe ser mayor a  :max caracteres', ['attribute' => __('name'), 'max' => 255]),
 
-            'value.required' => __('The :attribute field is required', ['attribute' => __('value')]),
-            'value.integer' => __('The :attribute must be an integer', ['attribute' => __('value')]),
+            'value.required' => __('El campo :attribute es requerido', ['attribute' => __('value')]),
+            'value.integer' => __('El campo :attribute debe ser un numero entero', ['attribute' => __('value')]),
         ];
     }
 }

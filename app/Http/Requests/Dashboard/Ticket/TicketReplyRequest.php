@@ -37,10 +37,10 @@ class TicketReplyRequest extends FormRequest
     public function messages()
     {
         return [
-            'body.required' => __('The :attribute field is required', ['attribute' => __('body')]),
+            'body.required' => __('El campo :attribute es requerido', ['attribute' => __('body')]),
 
-            'status_id.required' => __('The :attribute field is required', ['attribute' => __('status')]),
-            'status_id.exists' => __('The selected :attribute is invalid', ['attribute' => __('status')]),
+            'status_id.required' => __('El campo :attribute es requerido', ['attribute' => __('status')]),
+            'status_id.exists' => __('El :attribute es invalido', ['attribute' => __('status')]),
         ];
     }
 }

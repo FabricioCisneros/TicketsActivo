@@ -37,13 +37,13 @@ class ResetRequest extends FormRequest
     public function messages()
     {
         return [
-            'token.required' => __('The :attribute field is required', ['attribute' => __('token')]),
-            'token.min' => __('The :attribute may not be greater than :max characters', ['attribute' => __('token'), 'max' => 60]),
-            'token.max' => __('The :attribute may not be greater than :max characters', ['attribute' => __('token'), 'max' => 60]),
+            'token.required' => __('El campo :attribute es requerido', ['attribute' => __('token')]),
+            'token.min' => __('El campo :attribute No debe ser menor a :max caracteres', ['attribute' => __('token'), 'max' => 60]),
+            'token.max' => __('El campo :attribute No debe ser mayor a :max caracteres', ['attribute' => __('token'), 'max' => 60]),
 
-            'password.required' => __('The :attribute field is required', ['attribute' => __('password')]),
-            'password.min' => __('The :attribute must be at least :min characters', ['attribute' => __('password'), 'min' => 6]),
-            'password.confirmed' => __('The :attribute confirmation does not match', ['attribute' => __('password')])
+            'password.required' => __('El campo :attribute es requerido', ['attribute' => __('password')]),
+            'password.min' => __('El campo :attribute debe tener al menos :min caracteres', ['attribute' => __('password'), 'min' => 6]),
+            'password.confirmed' => __('el campo :attribute de confirmacion no coincide', ['attribute' => __('password')])
         ];
     }
 }

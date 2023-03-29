@@ -39,18 +39,18 @@ class UpdateRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => __('The :attribute field is required', ['attribute' => __('name')]),
-            'name.max' => __('The :attribute may not be greater than :max characters', ['attribute' => __('name'), 'max' => 255]),
+            'name.required' => __('El campo :attribute es requerido', ['attribute' => __('name')]),
+            'name.max' => __('El campo :attribute no debe tener mas de :max caracteres', ['attribute' => __('name'), 'max' => 255]),
 
-            'email.required' => __('The :attribute field is required', ['attribute' => __('email')]),
-            'email.email' => __('The :attribute must be a valid email address', ['attribute' => __('email')]),
-            'email.max' => __('The :attribute may not be greater than :max characters', ['attribute' => __('email'), 'max' => 255]),
-            'email.unique' => __('The :attribute has already been taken', ['attribute' => __('email')]),
+            'email.required' => __('El campo :attribute es requerido', ['attribute' => __('email')]),
+            'email.email' => __('El campo :attribute debe tener', ['attribute' => __('email')]),
+            'email.max' => __('El campo :attribute no debe ser mayor a  :max caracteres', ['attribute' => __('email'), 'max' => 255]),
+            'email.unique' => __('El campo :attribute ya esta en uso', ['attribute' => __('email')]),
 
-            'status.required' => __('The :attribute field is required', ['attribute' => __('status')]),
+            'status.required' => __('El campo :attribute es requerido', ['attribute' => __('status')]),
 
-            'role_id.required' => __('The :attribute field is required', ['attribute' => __('role')]),
-            'role_id.exists' => __('The selected :attribute is invalid', ['attribute' => __('role')]),
+            'role_id.required' => __('El campo :attribute es requerido', ['attribute' => __('role')]),
+            'role_id.exists' => __('el campo :attribute es invalido', ['attribute' => __('role')]),
         ];
     }
 }

@@ -36,7 +36,7 @@ class TicketReplyRequest extends FormRequest
     public function messages()
     {
         return [
-            'body.required' => __('The :attribute field is required', ['attribute' => __('body')]),
+            'body.required' => __('el campo :attribute es requerido', ['attribute' => __('body')]),
         ];
     }
 }

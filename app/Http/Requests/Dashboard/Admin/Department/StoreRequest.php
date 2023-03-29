@@ -37,10 +37,10 @@ class StoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => __('The :attribute field is required', ['attribute' => __('name')]),
-            'name.max' => __('The :attribute may not be greater than :max characters', ['attribute' => __('name'), 'max' => 255]),
+            'name.required' => __('El campo :attribute es requerido', ['attribute' => __('name')]),
+            'name.max' => __('El campo :attribute No debe ser mayor a :max caracteres', ['attribute' => __('name'), 'max' => 255]),
 
-            'agents.required_if' => __('The :attribute must have at least :min items', ['attribute' => __('agents'), 'min' => 1]),
+            'agents.required_if' => __('El campo :attribute debe tener al menos :min items', ['attribute' => __('agents'), 'min' => 1]),
         ];
     }
 }

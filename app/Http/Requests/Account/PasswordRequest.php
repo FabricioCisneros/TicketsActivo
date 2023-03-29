@@ -37,11 +37,11 @@ class PasswordRequest extends FormRequest
     public function messages()
     {
         return [
-            'current_password.required' => __('The :attribute field is required', ['attribute' => __('Current password')]),
+            'current_password.required' => __('El campo :attribute es requerido', ['attribute' => __('Current password')]),
 
-            'password.required' => __('The :attribute field is required', ['attribute' => __('password')]),
-            'password.min' => __('The :attribute must be at least :min characters', ['attribute' => __('password'), 'min' => 6]),
-            'password.confirmed' => __('The :attribute confirmation does not match', ['attribute' => __('password')])
+            'password.required' => __('El campo :attribute es requerido', ['attribute' => __('password')]),
+            'password.min' => __('El campo :attribute debe tener un minimo de :min carcteres', ['attribute' => __('password'), 'min' => 6]),
+            'password.confirmed' => __('El confirmacion de :attribute no coincide', ['attribute' => __('password')])
         ];
     }
 }

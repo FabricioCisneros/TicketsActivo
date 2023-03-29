@@ -58,13 +58,13 @@
                                             type="button"
                                             @click="discardReply"
                                         >
-                                            {{ $t('Discard') }}
+                                            {{ $t('descartar') }}
                                         </button>
                                         <button
                                             class="btn btn-green rounded-none"
                                             type="submit"
                                         >
-                                            {{ $t('Send reply') }}
+                                            {{ $t('responder') }}
                                         </button>
                                     </div>
                                 </template>

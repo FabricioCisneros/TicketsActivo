@@ -38,17 +38,17 @@ class RegisterRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => __('The :attribute field is required', ['attribute' => __('name')]),
-            'name.max' => __('The :attribute may not be greater than :max characters', ['attribute' => __('name'), 'max' => 255]),
+            'name.required' => __('El campo :attribute es requerido', ['attribute' => __('name')]),
+            'name.max' => __('El campo :attribute No debe ser mayor a :max caracteres', ['attribute' => __('name'), 'max' => 255]),
 
-            'email.required' => __('The :attribute field is required', ['attribute' => __('email')]),
-            'email.email' => __('The :attribute must be a valid email address', ['attribute' => __('email')]),
-            'email.max' => __('The :attribute may not be greater than :max characters', ['attribute' => __('email'), 'max' => 255]),
-            'email.unique' => __('The :attribute has already been taken', ['attribute' => __('email')]),
+            'email.required' => __('El campo :attribute es requerido', ['attribute' => __('email')]),
+            'email.email' => __('El campo :attribute debe ser un email valido', ['attribute' => __('email')]),
+            'email.max' => __('El campo :attribute No debe ser mayor a :max caracteres', ['attribute' => __('email'), 'max' => 255]),
+            'email.unique' => __('El campo :attribute ya esta en uso', ['attribute' => __('email')]),
 
-            'password.required' => __('The :attribute field is required', ['attribute' => __('password')]),
-            'password.min' => __('The :attribute must be at least :min characters', ['attribute' => __('password'), 'min' => 6]),
-            'password.confirmed' => __('The :attribute confirmation does not match', ['attribute' => __('password')])
+            'password.required' => __('El campo :attribute es requerido', ['attribute' => __('password')]),
+            'password.min' => __('El campo :attribute debe tener como minimo :min caracteres', ['attribute' => __('password'), 'min' => 6]),
+            'password.confirmed' => __('El campo :attribute de confirmacion no coincide', ['attribute' => __('password')])
         ];
     }
 }

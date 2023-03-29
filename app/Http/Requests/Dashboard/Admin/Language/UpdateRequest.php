@@ -36,7 +36,7 @@ class UpdateRequest extends FormRequest
     public function messages()
     {
         return [
-            'strings.array' => __('The :attribute field is required', ['attribute' => __('strings')])
+            'strings.array' => __('el campo :attribute es requerido', ['attribute' => __('strings')])
         ];
     }
 }

@@ -36,7 +36,7 @@ class StoreFileRequest extends FormRequest
     public function messages()
     {
         return [
-            'file.required' => __('The :attribute field is required', ['attribute' => __('file')]),
+            'file.required' => __('El campo :attribute es requerido', ['attribute' => __('file')]),
         ];
     }
 }

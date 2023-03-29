@@ -37,11 +37,11 @@ class AuthenticationUpdateRequest extends FormRequest
     public function messages()
     {
         return [
-            'app_user_registration.required' => __('The :attribute field is required', ['attribute' => __('user registration')]),
-            'app_user_registration.boolean' => __('The :attribute field must be true or false', ['attribute' => __('user registration')]),
+            'app_user_registration.required' => __('El campo :attribute es requerido', ['attribute' => __('user registration')]),
+            'app_user_registration.boolean' => __('El campo :attribute debe ser verdadero o falso', ['attribute' => __('user registration')]),
 
-            'app_default_role.required' => __('The :attribute field is required', ['attribute' => __('default role')]),
-            'app_default_role.exists' => __('The selected :attribute is invalid', ['attribute' => __('default role')]),
+            'app_default_role.required' => __('El campo :attribute es requerido', ['attribute' => __('default role')]),
+            'app_default_role.exists' => __('El rol :attribute es invalido', ['attribute' => __('default role')]),
         ];
     }
 }

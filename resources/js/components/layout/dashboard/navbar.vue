@@ -68,7 +68,7 @@
                                         to="/account"
                                         @click.native="dropdownOpen = false"
                                     >
-                                        {{ $t('Opciones de cuentas') }}
+                                        {{ $t('Configuracion de cuenta') }}
                                     </router-link>
                                     <a
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150"

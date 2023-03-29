@@ -159,7 +159,7 @@ export default {
     name: "new",
     metaInfo() {
         return {
-            title: this.$i18n.t('Create ticket')
+            title: this.$i18n.t('Creacion de ticket')
         }
     },
     data() {

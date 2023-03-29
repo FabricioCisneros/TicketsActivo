@@ -38,13 +38,13 @@ class StoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => __('The :attribute field is required', ['attribute' => __('name')]),
-            'name.max' => __('The :attribute may not be greater than :max characters', ['attribute' => __('name'), 'max' => 255]),
-            'name.unique' => __('The :attribute has already been taken', ['attribute' => __('name')]),
+            'name.required' => __('El campo :attribute es requerido', ['attribute' => __('name')]),
+            'name.max' => __('El campo :attribute no debe tener mas de :max caracteres', ['attribute' => __('name'), 'max' => 255]),
+            'name.unique' => __('El campo :attribute ya fue tomado', ['attribute' => __('name')]),
 
-            'dashboard_access.required' => __('The :attribute field is required', ['attribute' => __('dashboard access')]),
+            'dashboard_access.required' => __('El campo :attribute es requerido', ['attribute' => __('dashboard access')]),
 
-            'permissions.array' => __('The :attribute must be an array', ['attribute' => __('permissions')]),
+            'permissions.array' => __('El campo :attribute debe ser un arreglo', ['attribute' => __('permissions')]),
         ];
     }
 

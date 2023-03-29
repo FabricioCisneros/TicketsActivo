@@ -101,7 +101,7 @@ export default {
     name: "index",
     metaInfo() {
         return {
-            title: this.$i18n.t('New ticket')
+            title: this.$i18n.t('Nuevo Ticket')
         }
     },
     data() {

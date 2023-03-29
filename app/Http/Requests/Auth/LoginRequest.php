@@ -37,8 +37,8 @@ class LoginRequest extends FormRequest
     public function messages()
     {
         return [ 
-            'username.required'=>__('el :attribute es requerido',['attribute'=>__('username')]),
-            'password.required' => __('The :attribute field is required', ['attribute' => __('password')])
+            'username.required'=>__('El campo :attribute es requerido',['attribute'=>__('username')]),
+            'password.required' => __('El campo :attribute es requerido', ['attribute' => __('password')])
         ];
     }
 }

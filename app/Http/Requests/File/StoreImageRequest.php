@@ -36,9 +36,9 @@ class StoreImageRequest extends FormRequest
     public function messages()
     {
         return [
-            'file.required' => __('The :attribute field is required', ['attribute' => __('file')]),
-            'file.image' => __('The :attribute must be an image', ['attribute' => __('file')]),
-            'file.max' => __('The :attribute must be between :min and :max kilobytes', ['attribute' => __('file'), 'max' => 5000]),
+            'file.required' => __('El campo :attribute es requerido', ['attribute' => __('file')]),
+            'file.image' => __('El campo :attribute debe ser una imagen', ['attribute' => __('file')]),
+            'file.max' => __('El archivo :attribute debe pesar entre :min y :max kilobytes', ['attribute' => __('file'), 'max' => 5000]),
         ];
     }
 }

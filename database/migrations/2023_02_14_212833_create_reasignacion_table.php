@@ -15,10 +15,10 @@ class CreateReasignacionTable extends Migration
     {
         Schema::create('reasignacion', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('source_department_id')->constrained('departments');
-            $table->foreignId('destination_department_id')->constrained('departments');
-            $table->foreignId('ticket_id')->constrained('tickets');
-            $table->foreignId('reassigned_by_id')->constrained('users');
+            $table->foreignId('source_department_id')->constrained('departments')->onDelete('cascade');
+            $table->foreignId('destination_department_id')->constrained('departments')->onDelete('cascade');
+            $table->foreignId('ticket_id')->constrained('tickets')->onDelete('cascade');
+            $table->foreignId('reassigned_by_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('lifted_by_id')->constrained('users');
             $table->text('description');
             $table->timestamp('date')->nullable();

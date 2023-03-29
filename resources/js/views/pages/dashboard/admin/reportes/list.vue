@@ -133,7 +133,7 @@
                                 <svg-vue class="h-full h-auto w-48 mb-6" icon="undraw.task-list"></svg-vue>
                             </div>
                             <div class="flex justify-center items-center">
-                                <div class="w-full font-semibold text-2xl">{{ $t('No records found') }}</div>
+                                <div class="w-full font-semibold text-2xl">{{ $t('Ningun resultado que mostrar') }}</div>
                             </div>
                         </div>
                     </div>

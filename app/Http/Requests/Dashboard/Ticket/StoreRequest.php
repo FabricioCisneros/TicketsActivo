@@ -41,22 +41,22 @@ class StoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'user_id.required' => __('The :attribute field is required', ['attribute' => __('customer')]),
-            'user_id.exists' => __('The selected :attribute is invalid', ['attribute' => __('customer')]),
+            'user_id.required' => __('el campo :attribute es requerido', ['attribute' => __('customer')]),
+            'user_id.exists' => __('El campo :attribute es invalido', ['attribute' => __('customer')]),
 
-            'subject.required' => __('The :attribute field is required', ['attribute' => __('subject')]),
-            'subject.max' => __('The :attribute may not be greater than :max characters', ['attribute' => __('subject'), 'max' => 255]),
+            'subject.required' => __('El campo :attribute es requerido', ['attribute' => __('subject')]),
+            'subject.max' => __('El campo :attribute debe tener un maximo de :max caracteres', ['attribute' => __('subject'), 'max' => 255]),
 
-            'department_id.required' => __('The :attribute field is required', ['attribute' => __('department')]),
-            'department_id.exists' => __('The selected :attribute is invalid', ['attribute' => __('department')]),
+            'department_id.required' => __('El campo :attribute es requerido', ['attribute' => __('department')]),
+            'department_id.exists' => __('El campo :attribute es invalido', ['attribute' => __('department')]),
 
-            'status_id.required' => __('The :attribute field is required', ['attribute' => __('status')]),
-            'status_id.exists' => __('The selected :attribute is invalid', ['attribute' => __('status')]),
+            'status_id.required' => __('El campo :attribute es requerido', ['attribute' => __('status')]),
+            'status_id.exists' => __('El :attribute es invalido', ['attribute' => __('status')]),
 
-            'priority_id.required' => __('The :attribute field is required', ['attribute' => __('priority')]),
-            'priority_id.exists' => __('The selected :attribute is invalid', ['attribute' => __('priority')]),
+            'priority_id.required' => __('El campo :attribute es requerido', ['attribute' => __('priority')]),
+            'priority_id.exists' => __('El :attribute es invalido', ['attribute' => __('priority')]),
 
-            'body.required' => __('The :attribute field is required', ['attribute' => __('body')]),
+            'body.required' => __('El campo :attribute es requerido', ['attribute' => __('body')]),
         ];
     }
 }

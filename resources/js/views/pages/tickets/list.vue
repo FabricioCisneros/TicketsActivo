@@ -212,7 +212,7 @@ export default {
     name: "index",
     metaInfo() {
         return {
-            title: this.$i18n.t('My tickets')
+            title: this.$i18n.t('Mis tickets')
         }
     },
     mounted() {

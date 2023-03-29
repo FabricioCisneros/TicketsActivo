@@ -51,15 +51,15 @@
                                                 to="/dashboard/home"
                                                 @click.native="dropdownOpen = false"
                                             >
-                                                {{ $t('Dashboard') }}
+                                                {{ $t('Home') }}
                                             </router-link>
                                             <router-link
                                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150"
-                                                role="menuitem"
+                                                 role="menuitem"
                                                 to="/tickets/list"
                                                 @click.native="dropdownOpen = false"
                                             >
-                                                {{ $t('My tickets') }}
+                                                {{ $t('Mis tickets') }}
                                             </router-link>
                                             <router-link
                                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150"
@@ -67,7 +67,7 @@
                                                 to="/account"
                                                 @click.native="dropdownOpen = false"
                                             >
-                                                {{ $t('Account settings') }}
+                                                {{ $t('Configuracion de cuenta') }}
                                             </router-link>
                                             <a
                                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150"
@@ -75,7 +75,7 @@
                                                 role="menuitem"
                                                 @click.prevent="signOut"
                                             >
-                                                {{ $t('Sign out') }}
+                                                {{ $t('Cerrar sesión') }}
                                             </a>
                                         </div>
                                     </div>
@@ -131,7 +131,7 @@
                             to="/dashboard/home"
                             @click.native="menuOpen = false"
                         >
-                            {{ $t('Dashboard') }}
+                            {{ $t('Home') }}
                         </router-link>
                         <router-link
                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150"
@@ -139,7 +139,7 @@
                             to="/tickets/list"
                             @click.native="menuOpen = false"
                         >
-                            {{ $t('My tickets') }}
+                            {{ $t('Mis tickets') }}
                         </router-link>
                         <router-link
                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150"
@@ -147,7 +147,7 @@
                             to="/account"
                             @click.native="menuOpen = false"
                         >
-                            {{ $t('Account settings') }}
+                            {{ $t('Configuracion de cuenta') }}
                         </router-link>
                         <a
                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150"
@@ -155,7 +155,7 @@
                             role="menuitem"
                             @click.prevent="signOut"
                         >
-                            {{ $t('Sign out') }}
+                            {{ $t('Cerrar sesión') }}
                         </a>
                     </div>
                 </template>
@@ -165,7 +165,7 @@
                         role="menuitem"
                         to="/auth/login"
                     >
-                        {{ $t('Sign In') }}
+                        {{ $t('Iniciar sesión') }}
                     </router-link>
                 </template>
             </div>

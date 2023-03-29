@@ -37,13 +37,13 @@ class StoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => __('The :attribute field is required', ['attribute' => __('name')]),
-            'name.max' => __('The :attribute may not be greater than :max characters', ['attribute' => __('name'), 'max' => 255]),
+            'name.required' => __('El campo :attribute es requerido', ['attribute' => __('name')]),
+            'name.max' => __('el campo :attribute no debe ser mayor a :max caracteres', ['attribute' => __('name'), 'max' => 255]),
 
-            'locale.required' => __('The :attribute field is required', ['attribute' => __('locale')]),
-            'locale.min' => __('The :attribute must be at least :min characters', ['attribute' => __('locale'), 'min' => 1]),
-            'locale.max' => __('The :attribute may not be greater than :max characters', ['attribute' => __('locale'), 'max' => 5]),
-            'locale.unique' => __('The :attribute has already been taken', ['attribute' => __('locale')]),
+            'locale.required' => __('El campo :attribute es requerido', ['attribute' => __('locale')]),
+            'locale.min' => __('El campo :attribute debe tener al menos :min caracteres', ['attribute' => __('locale'), 'min' => 1]),
+            'locale.max' => __('El campo :attribute no debe ser mayor a :max caracteres', ['attribute' => __('locale'), 'max' => 5]),
+            'locale.unique' => __('El campo :attribute ya esta en uso', ['attribute' => __('locale')]),
         ];
     }
 }

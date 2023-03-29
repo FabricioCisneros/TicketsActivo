@@ -7,7 +7,7 @@
                     <div class="md:flex md:items-center md:justify-between">
                         <div class="flex-1 min-w-0">
                             <h2 class="py-0.5 text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
-                                {{ $t('Account settings') }}
+                                {{ $t('Configuracion de cuenta') }}
                             </h2>
                         </div>
                     </div>
@@ -20,15 +20,15 @@
                             <loading :status="loading.details"/>
                             <div class="bg-white md:grid md:grid-cols-3 md:gap-6 px-4 py-5 sm:p-6">
                                 <div class="md:col-span-1">
-                                    <h3 class="text-lg font-medium leading-6 text-gray-900">{{ $t('Personal information') }}</h3>
+                                    <h3 class="text-lg font-medium leading-6 text-gray-900">{{ $t('Datos de usuario') }}</h3>
                                     <p class="mt-1 text-sm leading-5 text-gray-500">
-                                        {{ $t('This information will be displayed publicly so be careful what you share') }}.
+                                        {{ $t('Esta informacion será mostrada a todo el publico') }}.
                                     </p>
                                 </div>
                                 <div class="mt-5 md:mt-0 md:col-span-2">
                                     <div class="grid grid-cols-3 gap-6">
                                         <div class="col-span-3">
-                                            <label class="block text-sm font-medium leading-5 text-gray-700" for="name">{{ $t('Name') }}</label>
+                                            <label class="block text-sm font-medium leading-5 text-gray-700" for="name">{{ $t('Nombres del usuario') }}</label>
                                             <div class="mt-1 relative rounded-md shadow-sm">
                                                 <input id="name" v-model="user.name" :placeholder="$t('Your name')" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                             </div>
@@ -67,7 +67,7 @@
                                                     type="button"
                                                     @click="selectAvatar"
                                                 >
-                                                    {{ $t('Change') }}
+                                                    {{ $t('cambiar') }}
                                                 </button>
                                             </span>
                                         </div>
@@ -77,7 +77,7 @@
                             <div class="bg-gray-100 text-right px-4 py-3 sm:px-6">
                                 <span class="inline-flex">
                                     <button class="btn btn-blue rounded-md shadow-sm" type="submit">
-                                        {{ $t('Save') }}
+                                        {{ $t('guardar cambios') }}
                                     </button>
                                 </span>
                             </div>
@@ -88,20 +88,20 @@
                             <loading :status="loading.password"/>
                             <div class="bg-white md:grid md:grid-cols-3 md:gap-6 px-4 py-5 sm:p-6">
                                 <div class="md:col-span-1">
-                                    <h3 class="text-lg font-medium leading-6 text-gray-900">{{ $t('Change password') }}</h3>
+                                    <h3 class="text-lg font-medium leading-6 text-gray-900">{{ $t('Cambiar contraseña') }}</h3>
                                     <p class="mt-1 text-sm leading-5 text-gray-500">
-                                        {{ $t('Change your password for a new one, valid for the next login') }}.
+                                        {{ $t('Cambia tu contraseña por una nueva, los cambios se aplicaran la siguiente vez que inicies sesión') }}.
                                     </p>
                                 </div>
                                 <div class="mt-5 md:mt-0 md:col-span-2">
                                     <div class="grid grid-cols-3 gap-6">
                                         <div class="col-span-3">
-                                            <label class="block text-sm font-medium leading-5 text-gray-700" for="current_password">{{ $t('Current password') }}</label>
+                                            <label class="block text-sm font-medium leading-5 text-gray-700" for="current_password">{{ $t('Contraseña actual') }}</label>
                                             <div class="mt-1 relative rounded-md shadow-sm">
                                                 <input
                                                     id="current_password"
                                                     v-model="user.current_password"
-                                                    :placeholder="$t('Your current password')"
+                                                    :placeholder="$t('ingresa aqui tu contraseña actual')"
                                                     class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                                                     type="password"
                                                 >
@@ -110,12 +110,12 @@
                                     </div>
                                     <div class="mt-6 grid grid-cols-3 gap-6">
                                         <div class="col-span-3">
-                                            <label class="block text-sm font-medium leading-5 text-gray-700" for="password">{{ $t('New password') }}</label>
+                                            <label class="block text-sm font-medium leading-5 text-gray-700" for="password">{{ $t('Nueva contraseña') }}</label>
                                             <div class="mt-1 relative rounded-md shadow-sm">
                                                 <input
                                                     id="password"
                                                     v-model="user.password"
-                                                    :placeholder="$t('Your new password')"
+                                                    :placeholder="$t('Ingresa tu nueva contraseña')"
                                                     class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                                                     type="password"
                                                 >
@@ -124,12 +124,12 @@
                                     </div>
                                     <div class="mt-6 grid grid-cols-3 gap-6">
                                         <div class="col-span-3">
-                                            <label class="block text-sm font-medium leading-5 text-gray-700" for="password_confirmation">{{ $t('Current password') }}</label>
+                                            <label class="block text-sm font-medium leading-5 text-gray-700" for="password_confirmation">{{ $t('Ingresa tu nueva contraseña') }}</label>
                                             <div class="mt-1 relative rounded-md shadow-sm">
                                                 <input
                                                     id="password_confirmation"
                                                     v-model="user.password_confirmation"
-                                                    :placeholder="$t('Confirm your new password')"
+                                                    :placeholder="$t('Confirma tu nueva contraseña')"
                                                     class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                                                     type="password"
                                                 >
@@ -141,7 +141,7 @@
                             <div class="bg-gray-100 text-right px-4 py-3 sm:px-6">
                                 <span class="inline-flex">
                                     <button class="btn btn-blue rounded-md shadow-sm" type="submit">
-                                        {{ $t('Change password') }}
+                                        {{ $t('Cambiar contraseña') }}
                                     </button>
                                 </span>
                             </div>
@@ -157,10 +157,10 @@
 import Navbar from "@/components/layout/shared/navbar";
 
 export default {
-    name: "Account",
+    name: "Cuenta",
     metaInfo() {
         return {
-            title: this.$i18n.t('Account')
+            title: this.$i18n.t('Cuenta')
         }
     },
     components: {Navbar},
@@ -216,8 +216,8 @@ export default {
                     self.user.avatar_preview = URL.createObjectURL(event.target.files[0]);
                 } else {
                     self.$notify({
-                        title: self.$i18n.t('Unsupported file type').toString(),
-                        text: self.$i18n.t('Only image type files are accepted').toString(),
+                        title: self.$i18n.t('Tipo de archivo no soportado').toString(),
+                        text: self.$i18n.t('Solo son aceptadas archivos de tipo imagen (jpg y png)').toString(),
                         type: 'error'
                     })
                 }
@@ -242,8 +242,8 @@ export default {
                 self.$refs.changeAvatar.value = '';
                 self.$store.commit('updateUser', response.data);
                 self.$notify({
-                    title: self.$i18n.t('Success').toString(),
-                    text: self.$i18n.t('Your account details have been updated').toString(),
+                    title: self.$i18n.t('Completado').toString(),
+                    text: self.$i18n.t('Los detalles de tu cuenta fueron satisfactoriamente actualizados').toString(),
                     type: 'success'
                 })
             }).catch(function () {
@@ -263,8 +263,8 @@ export default {
                 self.user.password = null;
                 self.user.password_confirmation = null;
                 self.$notify({
-                    title: self.$i18n.t('Success').toString(),
-                    text: self.$i18n.t('Password changed successfully').toString(),
+                    title: self.$i18n.t('Completado').toString(),
+                    text: self.$i18n.t('Tu contraseña fue cambiada satisfactoriamente').toString(),
                     type: 'success'
                 })
             }).catch(function () {

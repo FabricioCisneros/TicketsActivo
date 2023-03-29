@@ -37,7 +37,7 @@ class AccountController extends Controller
         if ($user->save()) {
             return response()->json(new UserResource($user));
         }
-        return response()->json(['message' => __('An error occurred while saving data')], 500);
+        return response()->json(['message' => __('Ocurrio un error al actualizar los datos, refresca la pagina y vuelve a intentar.')], 500);
     }
 
     public function password(PasswordRequest $request): JsonResponse
@@ -46,15 +46,15 @@ class AccountController extends Controller
         /** @var User $user */
         $user = Auth::user();
         if (!(Hash::check($request->get('current_password'), $user->password))) {
-            return response()->json(['message' => __('The password entered does not match the current password')], 406);
+            return response()->json(['message' => __('las contraseñas nuevas no coinciden')], 406);
         }
         if (strcmp($request->get('current_password'), $request->get('password')) === 0) {
-            return response()->json(['message' => __('The new password can not be the same as the previous one')], 406);
+            return response()->json(['message' => __('La nueva contraseña no puede ser igual a la contraseña actual')], 406);
         }
         $user->password = bcrypt($request->get('password'));
         if ($user->save()) {
-            return response()->json(['message' => __('Password changed successfully')]);
+            return response()->json(['message' => __('Contraseña actualizada')]);
         }
-        return response()->json(['message' => __('An error occurred while saving data')], 500);
+        return response()->json(['message' => __('Ocurrio un error al actualizar los datos, refresca la pagina y vuelve a intentar.')], 500);
     }
 }

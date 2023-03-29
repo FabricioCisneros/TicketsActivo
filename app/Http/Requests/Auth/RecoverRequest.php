@@ -36,9 +36,9 @@ class RecoverRequest extends FormRequest
     public function messages()
     {
         return [
-            'email.required' => __('The :attribute field is required', ['attribute' => __('email')]),
-            'email.email' => __('The :attribute must be a valid email address', ['attribute' => __('email')]),
-            'email.exists' => __('The email entered is not registered'),
+            'email.required' => __('El campo :attribute es requerido', ['attribute' => __('email')]),
+            'email.email' => __('El campo :attribute debe tener un email valido', ['attribute' => __('email')]),
+            'email.exists' => __('El email introducido no existe'),
         ];
     }
 }

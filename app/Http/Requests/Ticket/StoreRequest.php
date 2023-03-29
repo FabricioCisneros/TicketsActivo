@@ -38,12 +38,12 @@ class StoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'subject.required' => __('The :attribute field is required', ['attribute' => __('subject')]),
-            'subject.max' => __('The :attribute may not be greater than :max characters', ['attribute' => __('subject'), 'max' => 255]),
+            'subject.required' => __('El campo :attribute es requerido', ['attribute' => __('subject')]),
+            'subject.max' => __('El campo :attribute no debe tener mas de :max caracteres', ['attribute' => __('subject'), 'max' => 255]),
 
-            'department_id.exists' => __('The selected :attribute is invalid', ['attribute' => __('department')]),
+            'department_id.exists' => __('El item :attribute seleccionado es invalido', ['attribute' => __('department')]),
 
-            'body.required' => __('The :attribute field is required', ['attribute' => __('body')]),
+            'body.required' => __('El campo :attribute es requerido', ['attribute' => __('body')]),
         ];
     }
 }
